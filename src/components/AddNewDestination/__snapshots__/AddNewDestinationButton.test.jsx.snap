@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddNewDestinationButton should render button 1`] = `
+<div
+  id="button-div"
+>
+  <Button
+    as="button"
+    circular={true}
+    color="blue"
+    icon="plus"
+    onClick={[Function]}
+    size="huge"
+  />
+</div>
+`;
