@@ -33,7 +33,7 @@ AddNewDestinationForm.propTypes = {
 };
 
 AddNewDestinationForm.defaultProps = {
-  onClick: () => true,
+  onClick: () => {},
 };
 
 export default AddNewDestinationForm;

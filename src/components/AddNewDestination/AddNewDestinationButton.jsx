@@ -13,7 +13,7 @@ AddNewDestinationButton.propTypes = {
 };
 
 AddNewDestinationButton.defaultProps = {
-  onClick: () => true,
+  onClick: () => {},
 };
 
 export default AddNewDestinationButton;
