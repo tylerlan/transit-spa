@@ -1,17 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Grid, Container, Segment } from 'semantic-ui-react';
+import DestinationTable from './components/Destinations/DestinationTable';
+import AddNewDestinationRow from './components/AddNewDestination/AddNewDestinationRow';
 import './App.css';
 
-const App = () => (
-  <div className="App">
-    <div className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <h2>Welcome to React</h2>
-    </div>
-    <p className="App-intro">
-      To get started, edit <code>src/App.js</code> and save to reload.
-    </p>
-  </div>
-);
+const App = () =>
+  (<div>
+    <Container>
+      <Grid padded centered>
+        <Grid.Column id="content-container">
+          <Grid.Row id="destinations-container">
+            <DestinationTable />
+          </Grid.Row>
+
+          <Grid.Row id="new-destination-container">
+            <Segment>
+              <AddNewDestinationRow />
+            </Segment>
+          </Grid.Row>
+        </Grid.Column>
+      </Grid>
+    </Container>
+  </div>);
 
 export default App;
