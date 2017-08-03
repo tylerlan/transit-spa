@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { List, Segment } from 'semantic-ui-react';
 
-import TimeToLeaveTimer from './Journey/TimeToLeaveTimer';
+import TimeToLeave from './Journey/TimeToLeave';
 import JourneyVisualization from './Journey/JourneyVisualization';
 import ArriveByEstimate from './Journey/ArriveByEstimate';
 import CurrentConditionsStatus from './Journey/CurrentConditionsStatus';
@@ -11,7 +11,7 @@ import CurrentConditionsStatus from './Journey/CurrentConditionsStatus';
 const NextBestJourney = ({ timeToLeave, steps, eta, conditionStatus }) =>
   (<Segment tertiary>
     <List divided horizontal size="huge">
-      <TimeToLeaveTimer timeToLeave={timeToLeave} />
+      <TimeToLeave timeToLeave={timeToLeave} />
       <JourneyVisualization active steps={steps} />
       <ArriveByEstimate eta={eta} />
       <CurrentConditionsStatus conditionStatus={conditionStatus} />
