@@ -17,8 +17,9 @@ class Timer extends Component {
     setTimeout(() => this.setState(this.decrementOrExpire), 1000);
 
     const sec = count % 60;
+    const min = (count - sec) / 60;
+
     const seconds = sec < 10 ? `0${sec}` : sec;
-    const min = (count - seconds) / 60;
     const minutes = min < 10 ? `0${min}` : min;
 
     return this.state.expired
