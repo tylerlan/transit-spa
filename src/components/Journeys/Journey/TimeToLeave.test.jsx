@@ -1,8 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import sinon from 'sinon';
-import TimeToLeave, { timerExpired } from './TimeToLeave';
+import TimeToLeave from './TimeToLeave';
 
 describe('TimeToLeave', () => {
   it('should render list item', () => {

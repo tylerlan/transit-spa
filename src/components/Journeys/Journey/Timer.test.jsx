@@ -1,8 +1,6 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
-import sinon from 'sinon';
-import Timer, { timerExpired } from './Timer';
+import Timer from './Timer';
 
 describe('Timer', () => {
   it('renders Timer', () => {
