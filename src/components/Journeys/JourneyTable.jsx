@@ -13,7 +13,6 @@ function timeToLeaveConverter(departureTime) {
   const currentTime = Date.now() / 1000;
 
   return Math.ceil((departureTime - currentTime) / 60);
-  // time to leave is in MINUTES
 }
 
 class JourneyTable extends Component {
@@ -52,9 +51,11 @@ class JourneyTable extends Component {
 JourneyTable.propTypes = {
   destinationId: PropTypes.number.isRequired,
   origin: PropTypes.string.isRequired,
-  destinationsById: PropTypes.object.isRequired,
+  destinationsById: PropTypes.shape({
+    1: PropTypes.object,
+  }).isRequired,
   fetchJourneys: PropTypes.func.isRequired,
-  // journeys: PropTypes.object.isRequired,
+  journeys: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 JourneyTable.defaultProps = {
@@ -62,10 +63,33 @@ JourneyTable.defaultProps = {
   origin: '',
   destinationsById: { 1: {} },
   fetchJourneys: () => {},
-  // journeys: { 1: [] },
-  // adding this default prop crashes the program...
+  journeys: [
+    {
+      departureTimeUTC: Date.now() / 1000,
+      arrivalTimeText: '00:00am',
+      transitSteps: [
+        { duration: '1 mins', instruction: 'Walk to Some St. Station', mode: 'WALKING' },
+        {
+          duration: '23 mins',
+          instruction: 'Metro rail towards Warm Springs/South Fremont',
+          mode: 'TRANSIT',
+        },
+      ],
+    },
+    {
+      departureTimeUTC: Date.now() / 1000,
+      arrivalTimeText: '00:00pm',
+      transitSteps: [
+        { duration: '4 mins', instruction: 'Walk to Some St. Station', mode: 'WALKING' },
+        {
+          duration: '56 mins',
+          instruction: 'Metro rail towards Warm Springs/South Fremont',
+          mode: 'TRANSIT',
+        },
+      ],
+    },
+  ],
 };
-
 export const mapStateToProps = (state, ownProps) => {
   const origin = state.configuration.currentLocation.address;
   const destinationsById = state.destinations.byId;

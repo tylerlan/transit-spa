@@ -10,16 +10,14 @@ const JourneyVisualization = ({ active, steps }) =>
         let name;
         let title;
 
-        // The initial step is probably walking. Disregard all other walking.
-        if (step.mode === 'WALKING' && index !== 0) return;
+        if (step.mode === 'WALKING' && index !== 0) return null;
 
-        // To walk initially is to be blind
         if (step.mode.includes('WALKING')) {
           name = 'blind';
           title = 'Walk';
         }
-        // The transit steps need to be considered separately
-        if (step.mode === 'TRANSIT' && index !== 0) {
+
+        if (step.mode === 'TRANSIT') {
           name = step.instruction.includes('rail') ? 'subway' : 'bus';
           title = step.instruction.includes('rail') ? 'Train' : 'Bus';
         }
@@ -36,12 +34,12 @@ const JourneyVisualization = ({ active, steps }) =>
 
 JourneyVisualization.propTypes = {
   active: PropTypes.bool.isRequired,
-  steps: PropTypes.array.isRequired,
+  steps: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 JourneyVisualization.defaultProps = {
   active: null,
-  steps: [],
+  steps: [{}],
 };
 
 export default JourneyVisualization;

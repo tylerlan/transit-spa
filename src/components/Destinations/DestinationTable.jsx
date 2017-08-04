@@ -20,12 +20,14 @@ const DestinationTable = ({ destinationIds, destinationsById }) => {
 };
 
 DestinationTable.propTypes = {
-  destinationIds: PropTypes.array.isRequired,
-  destinationsById: PropTypes.object.isRequired,
+  destinationIds: PropTypes.arrayOf(PropTypes.number).isRequired,
+  destinationsById: PropTypes.shape({
+    1: PropTypes.object,
+  }).isRequired,
 };
 
 DestinationTable.defaultProps = {
-  destinationIds: [],
+  destinationIds: [1],
   destinationsById: { 1: {} },
 };
 
