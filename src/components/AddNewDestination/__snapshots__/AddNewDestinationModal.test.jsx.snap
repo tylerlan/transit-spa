@@ -21,13 +21,8 @@ exports[`AddNewDestinationModal should render modal 1`] = `
     content="Add new destination"
     icon="compose"
   />
-  <ModalContent>
-    <h3>
-      Enter new destination below
-    </h3>
-  </ModalContent>
   <ModalActions>
-    <AddNewDestinationForm
+    <Connect(PlacesAutocompleteForm)
       onClick={[Function]}
     />
   </ModalActions>
