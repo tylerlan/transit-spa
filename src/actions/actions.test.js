@@ -79,23 +79,23 @@ describe('actions', () => {
     const mockApiFetchJourneys = jest.fn();
     mockApiFetchJourneys.mockReturnValue(
       Promise.resolve([
-          {
-            legs: [
-              {
-                end_address: '123 Main st',
-                arrival_time: {text: '11:41am'},
-                departure_time: {value: 1501871210},
-                steps: [
-                  {
-                    html_instructions: 'Walk to Montgomery St. Station',
-                    travel_mode: 'WALKING',
-                    duration: {text: '8 mins'}
-                  },
-                ],
-              },
-            ]
-          }
-        ]),
+        {
+          legs: [
+            {
+              end_address: '123 Main st',
+              arrival_time: { text: '11:41am' },
+              departure_time: { value: 1501871210 },
+              steps: [
+                {
+                  html_instructions: 'Walk to Montgomery St. Station',
+                  travel_mode: 'WALKING',
+                  duration: { text: '8 mins' },
+                },
+              ],
+            },
+          ],
+        },
+      ]),
     );
 
     const extraArgument = {
@@ -138,8 +138,8 @@ describe('actions', () => {
                 instruction: 'Walk to Montgomery St. Station',
                 mode: 'WALKING',
                 duration: '8 mins',
-              }
-            ]
+              },
+            ],
           },
         ],
       },

@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 
 import { List, Segment } from 'semantic-ui-react';
 
-import TimeToLeaveTimer from './Journey/TimeToLeaveTimer';
+import TimeToLeave from './Journey/TimeToLeave';
 import JourneyVisualization from './Journey/JourneyVisualization';
 import ArriveByEstimate from './Journey/ArriveByEstimate';
 import CurrentConditionsStatus from './Journey/CurrentConditionsStatus';
 
-const NextBestJourney = ({ timeToLeave, steps, eta, conditionStatus }) =>
+const NextBestJourney = ({ timeToLeaveInSeconds, steps, eta, conditionStatus }) =>
   (<Segment tertiary>
     <List divided horizontal size="huge">
-      <TimeToLeaveTimer timeToLeave={timeToLeave} />
+      <TimeToLeave timeToLeaveInSeconds={timeToLeaveInSeconds} />
       <JourneyVisualization active steps={steps} />
       <ArriveByEstimate eta={eta} />
       <CurrentConditionsStatus conditionStatus={conditionStatus} />
@@ -19,14 +19,14 @@ const NextBestJourney = ({ timeToLeave, steps, eta, conditionStatus }) =>
   </Segment>);
 
 NextBestJourney.propTypes = {
-  timeToLeave: PropTypes.number.isRequired,
+  timeToLeaveInSeconds: PropTypes.number.isRequired,
   steps: PropTypes.arrayOf(PropTypes.object).isRequired,
   eta: PropTypes.string.isRequired,
   conditionStatus: PropTypes.string.isRequired,
 };
 
 NextBestJourney.defaultProps = {
-  timeToLeave: 1,
+  timeToLeaveInSeconds: 1,
   steps: [{}],
   eta: '',
   conditionStatus: 'on-time',

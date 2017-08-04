@@ -9,10 +9,11 @@ import NextBestJourney from './NextBestJourney';
 
 import { fetchJourneys } from '../../actions';
 
-function timeToLeaveConverter(departureTime) {
-  const currentTime = Date.now() / 1000;
+function timeToLeaveConverter(departureTimeInSeconds) {
+  const currentTimeInSeconds = Date.now() / 1000;
+  const diff = departureTimeInSeconds - currentTimeInSeconds;
 
-  return Math.ceil((departureTime - currentTime) / 60);
+  return Math.floor(diff);
 }
 
 class JourneyTable extends Component {
@@ -29,16 +30,19 @@ class JourneyTable extends Component {
     const bestJourney = journeys[0];
     const nextBestJourney = journeys[1];
 
+    const timeToLeaveBest = timeToLeaveConverter(bestJourney.departureTimeUTC);
+    const timeToLeaveNextBest = timeToLeaveConverter(nextBestJourney.departureTimeUTC);
+
     return (
       <div>
         <BestJourney
-          timeToLeave={timeToLeaveConverter(bestJourney.departureTimeUTC)}
+          timeToLeaveInSeconds={timeToLeaveBest}
           steps={bestJourney.transitSteps}
           eta={bestJourney.arrivalTimeText}
           conditionStatus={'on-time'}
         />
         <NextBestJourney
-          timeToLeave={timeToLeaveConverter(nextBestJourney.departureTimeUTC)}
+          timeToLeaveInSeconds={timeToLeaveNextBest}
           steps={nextBestJourney.transitSteps}
           eta={nextBestJourney.arrivalTimeText}
           conditionStatus={'future undertain -- see journey table'}
@@ -65,7 +69,7 @@ JourneyTable.defaultProps = {
   fetchJourneys: () => {},
   journeys: [
     {
-      departureTimeUTC: Date.now() / 1000,
+      departureTimeUTC: Date.now(),
       arrivalTimeText: '00:00am',
       transitSteps: [
         { duration: '1 mins', instruction: 'Walk to Some St. Station', mode: 'WALKING' },
@@ -77,7 +81,7 @@ JourneyTable.defaultProps = {
       ],
     },
     {
-      departureTimeUTC: Date.now() / 1000,
+      departureTimeUTC: Date.now(),
       arrivalTimeText: '00:00pm',
       transitSteps: [
         { duration: '4 mins', instruction: 'Walk to Some St. Station', mode: 'WALKING' },
