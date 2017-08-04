@@ -7,15 +7,16 @@ import JourneyTable from '../Journeys/JourneyTable';
 import DestinationHeader from './Destination/DestinationHeader';
 import './destination.css';
 
-const DestinationRow = ({ id, name }) =>
-  (<Container>
+const DestinationRow = ({ id, name }) => (
+  <Container>
     <Segment compact>
       <DestinationHeader name={name} />
     </Segment>
     <Segment compact textAlign="center">
       <JourneyTable id={id} />
     </Segment>
-  </Container>);
+  </Container>
+  );
 
 DestinationRow.propTypes = {
   id: PropTypes.number.isRequired,

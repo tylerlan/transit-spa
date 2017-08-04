@@ -1,26 +1,36 @@
 import React from 'react';
 import { Segment } from 'semantic-ui-react';
 import DestinationRow from './DestinationRow';
-import { journey1, journey2 } from '../../seeds/mapsApiSample';
 
-const testDests = [
-  {
+// /////////////////////////////////////////////////////////////////
+
+const currentTime = { text: '11:40pm', value: 1501566738 };
+const origin = '44 Tehama St, San Francisco, CA 94105';
+
+const TEST_ids = [1, 2];
+
+const TEST_destsById = {
+  1: {
     id: 1,
-    name: 'Place 1',
-    address: journey1.legs[0].end_address,
+    address: '200 2nd St, Oakland, CA 94607, USA',
   },
-  {
+  2: {
     id: 2,
-    name: 'Place 2',
-    address: journey2.legs[0].end_address,
+    address: '1354 Hayes St, San Francisco, CA 94117, USA',
   },
-];
+};
+
+// /////////////////////////////////////////////////////////////////
 
 const DestinationTable = () =>
   (<div>
-    {testDests.map(dest =>
-      (<Segment key={dest.id}>
-        <DestinationRow id={dest.id} name={dest.name} address={dest.address} />
+    {TEST_ids.map(id =>
+      (<Segment key={id}>
+        <DestinationRow
+          id={id}
+          name={TEST_destsById[id].address}
+          address={TEST_destsById.address}
+        />
       </Segment>),
     )}
   </div>);

@@ -20,14 +20,14 @@ const BestJourney = ({ timeToLeave, steps, eta, conditionStatus }) =>
 
 BestJourney.propTypes = {
   timeToLeave: PropTypes.number.isRequired,
-  steps: PropTypes.node.isRequired,
+  steps: PropTypes.array.isRequired,
   eta: PropTypes.string.isRequired,
   conditionStatus: PropTypes.string.isRequired,
 };
 
 BestJourney.defaultProps = {
   timeToLeave: 1,
-  steps: [''],
+  steps: [{}],
   eta: '',
   conditionStatus: '',
 };

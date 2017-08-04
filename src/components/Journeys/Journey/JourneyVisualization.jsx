@@ -3,18 +3,32 @@ import PropTypes from 'prop-types';
 
 import { Icon, List, Step } from 'semantic-ui-react';
 
-const JourneyVisualization = ({ active }) =>
+const JourneyVisualization = ({ active, steps }) =>
   (<List.Item>
     <Step.Group>
-      <Step disabled={active}>
-        <Icon name="blind" size="big" />
-        <Step.Content title="Walk" description="5 min to Montgomery St" />
-      </Step>
+      {steps.map((step) => {
+        let name;
+        let title;
+        if (step.mode.includes('WALKING')) {
+          name = 'blind';
+          title = 'Walk';
+        }
+        if (step.mode.includes('TRANSIT')) {
+          name = 'bus';
+          title = 'Bus';
+        }
+        if (step.mode.includes('rail')) {
+          name = 'BART';
+          title = 'BART';
+        }
 
-      <Step disabled={active}>
-        <Icon name="subway" size="big" />
-        <Step.Content title="BART" description="30 min to SFO Int'l Airport" />
-      </Step>
+        return (
+          <Step disabled={active} key={step.instruction}>
+            <Icon name={name} size="big" />
+            <Step.Content title={title} />
+          </Step>
+        );
+      })}
     </Step.Group>
   </List.Item>);
 

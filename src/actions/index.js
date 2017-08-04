@@ -37,9 +37,27 @@ export function removeDestination(destinationId) {
   };
 }
 
-export function fetchJourneys(destinationId, origin, destination, time) {
+export function fetchJourneys(destinationId, origin, destination) {
   return async (dispatch, getState, { Api }) => {
-    const json = await Api.fetchJourneys(origin, destination, time);
-    return dispatch(addJourneys(destinationId, json.body));
+    const json = await Api.fetchJourneys(origin, destination);
+
+    const journeys = json.map((rawJourneyObj) => {
+      const journeyObj = {
+        destination: rawJourneyObj.legs[0].end_address,
+        arrivalTimeText: rawJourneyObj.legs[0].arrival_time.text,
+        departureTimeUTC: rawJourneyObj.legs[0].departure_time.value,
+        transitSteps: rawJourneyObj.legs[0].steps.map((step, index) => {
+          const stepObj = {
+            instruction: step.html_instructions,
+            mode: step.travel_mode,
+            duration: step.duration.text,
+          };
+          return stepObj;
+        }),
+      };
+      return journeyObj;
+    });
+
+    return dispatch(addJourneys(destinationId, journeys));
   };
 }
