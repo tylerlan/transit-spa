@@ -29,7 +29,7 @@ NextBestJourney.defaultProps = {
   timeToLeave: 1,
   steps: [{}],
   eta: '',
-  conditionStatus: '',
+  conditionStatus: 'on-time',
 };
 
 export default NextBestJourney;

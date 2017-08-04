@@ -1,37 +1,42 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import { Segment } from 'semantic-ui-react';
 import DestinationRow from './DestinationRow';
 
-// /////////////////////////////////////////////////////////////////
+const DestinationTable = ({ destinationIds, destinationsById }) => {
+  if (!destinationIds) return <div>Loading...</div>;
 
-const currentTime = { text: '11:40pm', value: 1501566738 };
-const origin = '44 Tehama St, San Francisco, CA 94105';
-
-const TEST_ids = [1, 2];
-
-const TEST_destsById = {
-  1: {
-    id: 1,
-    address: '200 2nd St, Oakland, CA 94607, USA',
-  },
-  2: {
-    id: 2,
-    address: '1354 Hayes St, San Francisco, CA 94117, USA',
-  },
+  return (
+    <div>
+      {destinationIds.map(id =>
+        (<Segment key={id}>
+          <DestinationRow id={id} name={destinationsById[id].address} />
+        </Segment>),
+      )}
+    </div>
+  );
 };
 
-// /////////////////////////////////////////////////////////////////
+DestinationTable.propTypes = {
+  destinationIds: PropTypes.array.isRequired,
+  destinationsById: PropTypes.object.isRequired,
+};
 
-const DestinationTable = () =>
-  (<div>
-    {TEST_ids.map(id =>
-      (<Segment key={id}>
-        <DestinationRow
-          id={id}
-          name={TEST_destsById[id].address}
-          address={TEST_destsById.address}
-        />
-      </Segment>),
-    )}
-  </div>);
-export default DestinationTable;
+DestinationTable.defaultProps = {
+  destinationIds: [],
+  destinationsById: { 1: {} },
+};
+
+export const mapStateToProps = (state) => {
+  const destinationIds = state.destinations.ids;
+  const destinationsById = state.destinations.byId;
+
+  return {
+    destinationIds,
+    destinationsById,
+  };
+};
+
+export default connect(mapStateToProps, null)(DestinationTable);

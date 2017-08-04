@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Modal } from 'semantic-ui-react';
 import AddNewDestinationButton from './AddNewDestinationButton';
-import AddNewDestinationForm from './AddNewDestinationForm';
+import PlacesAutocompleteForm from './PlacesAutocompleteForm';
 
 class AddNewDestinationModal extends Component {
   constructor(props) {
@@ -32,11 +32,8 @@ class AddNewDestinationModal extends Component {
         size="small"
       >
         <Header icon="compose" content="Add new destination" />
-        <Modal.Content>
-          <h3>Enter new destination below</h3>
-        </Modal.Content>
         <Modal.Actions>
-          <AddNewDestinationForm onClick={this.handleClose} />
+          <PlacesAutocompleteForm onClick={this.handleClose} />
         </Modal.Actions>
       </Modal>
     );

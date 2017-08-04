@@ -46,7 +46,7 @@ export function fetchJourneys(destinationId, origin, destination) {
         destination: rawJourneyObj.legs[0].end_address,
         arrivalTimeText: rawJourneyObj.legs[0].arrival_time.text,
         departureTimeUTC: rawJourneyObj.legs[0].departure_time.value,
-        transitSteps: rawJourneyObj.legs[0].steps.map((step, index) => {
+        transitSteps: rawJourneyObj.legs[0].steps.map((step) => {
           const stepObj = {
             instruction: step.html_instructions,
             mode: step.travel_mode,
