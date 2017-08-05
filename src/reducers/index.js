@@ -48,7 +48,6 @@ export function journeys(state = { byDestinationId: {} }, action) {
   const dId = action.destinationId;
   let journeysForDest;
   const newJourneysByDestinationId = {};
-  let journeysToKeep = [];
   switch (action.type) {
     case TYPES.ADD_JOURNEYS:
       if (state.byDestinationId[dId]) {
@@ -61,9 +60,8 @@ export function journeys(state = { byDestinationId: {} }, action) {
         byDestinationId: { ...state.byDestinationId, ...newJourneysByDestinationId },
       };
 
-    case TYPES.REMOVE_JOURNEY:
-      journeysToKeep = state.byDestinationId[dId].filter((journey, ix) => ix !== action.index);
-      newJourneysByDestinationId[dId] = journeysToKeep;
+    case TYPES.REMOVE_JOURNEYS:
+      newJourneysByDestinationId[dId] = [];
       return {
         byDestinationId: { ...state.byDestinationId, ...newJourneysByDestinationId },
       };

@@ -238,7 +238,7 @@ describe('root reducer', () => {
     expect(reducer(oldState, action)).toEqual(newState);
   });
 
-  it('should handle action type REMOVE_JOURNEY', () => {
+  it('should handle action type REMOVE_JOURNEYS', () => {
     const oldState = {
       configuration: {
         currentLocation: {
@@ -273,9 +273,8 @@ describe('root reducer', () => {
     };
 
     const action = {
-      type: TYPES.REMOVE_JOURNEY,
+      type: TYPES.REMOVE_JOURNEYS,
       destinationId: 5,
-      index: 0,
     };
 
     const newState = {
@@ -299,7 +298,7 @@ describe('root reducer', () => {
       },
       journeys: {
         byDestinationId: {
-          5: [{ departureTime: '11:55pm', arrivalTime: '12:45am' }],
+          5: [],
           6: [
             { departureTime: '11:50pm', arrivalTime: '12:30am' },
             { departureTime: '11:55pm', arrivalTime: '12:45am' },

@@ -51,17 +51,15 @@ describe('actions', () => {
     expect(actions.addJourneys(destinationId, journeys)).toEqual(expectedAction);
   });
 
-  it('should create an action to remove a journey for a destination', () => {
+  it('should create an action to remove all journeys for a destination', () => {
     const destinationId = 5;
-    const index = 0;
 
     const expectedAction = {
-      type: TYPES.REMOVE_JOURNEY,
+      type: TYPES.REMOVE_JOURNEYS,
       destinationId: 5,
-      index: 0,
     };
 
-    expect(actions.removeJourney(destinationId, index)).toEqual(expectedAction);
+    expect(actions.removeJourneys(destinationId)).toEqual(expectedAction);
   });
 
   it('should create an action to remove a destination', () => {
