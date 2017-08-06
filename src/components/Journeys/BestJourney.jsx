@@ -8,16 +8,15 @@ import JourneyVisualization from './Journey/JourneyVisualization';
 import ArriveByEstimate from './Journey/ArriveByEstimate';
 import CurrentConditionsStatus from './Journey/CurrentConditionsStatus';
 
-const BestJourney = ({ timeToLeaveInSeconds, steps, eta, conditionStatus }) => (
-  <Segment>
+const BestJourney = ({ timeToLeaveInSeconds, steps, eta, conditionStatus }) =>
+  (<Segment>
     <List divided horizontal size="huge">
       <TimeToLeave timeToLeaveInSeconds={timeToLeaveInSeconds} />
       <JourneyVisualization active={false} steps={steps} />
       <ArriveByEstimate eta={eta} />
       <CurrentConditionsStatus conditionStatus={conditionStatus} />
     </List>
-  </Segment>
-  );
+  </Segment>);
 
 BestJourney.propTypes = {
   timeToLeaveInSeconds: PropTypes.number.isRequired,

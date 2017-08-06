@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Segment } from 'semantic-ui-react';
 import DestinationRow from './DestinationRow';
 
-const DestinationTable = ({ destinationIds, destinationsById }) => {
+export const DestinationTable = ({ destinationIds, destinationsById }) => {
   if (!destinationIds) return <div>Loading...</div>;
 
   return (

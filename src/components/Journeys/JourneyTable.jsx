@@ -9,14 +9,14 @@ import NextBestJourney from './NextBestJourney';
 
 import { fetchJourneys } from '../../actions';
 
-function timeToLeaveConverter(departureTimeInSeconds) {
+export function timeToLeaveConverter(departureTimeInSeconds) {
   const currentTimeInSeconds = Date.now() / 1000;
   const diff = departureTimeInSeconds - currentTimeInSeconds;
 
   return Math.floor(diff);
 }
 
-class JourneyTable extends Component {
+export class JourneyTable extends Component {
   componentDidMount() {
     const { destinationId, origin, destinationsById } = this.props;
     this.props.fetchJourneys(destinationId, origin, destinationsById[destinationId].address);
@@ -59,7 +59,7 @@ JourneyTable.propTypes = {
     1: PropTypes.object,
   }).isRequired,
   fetchJourneys: PropTypes.func.isRequired,
-  journeys: PropTypes.arrayOf(PropTypes.object).isRequired,
+  journeys: PropTypes.arrayOf(PropTypes.object),
 };
 
 JourneyTable.defaultProps = {
