@@ -8,10 +8,10 @@ import JourneyVisualization from './Journey/JourneyVisualization';
 import ArriveByEstimate from './Journey/ArriveByEstimate';
 import CurrentConditionsStatus from './Journey/CurrentConditionsStatus';
 
-const NextBestJourney = ({ timeToLeave, steps, eta, conditionStatus }) =>
+const NextBestJourney = ({ timeToLeaveInSeconds, steps, eta, conditionStatus }) =>
   (<Segment tertiary>
     <List divided horizontal size="huge">
-      <TimeToLeave timeToLeave={timeToLeave} />
+      <TimeToLeave timeToLeaveInSeconds={timeToLeaveInSeconds} />
       <JourneyVisualization active steps={steps} />
       <ArriveByEstimate eta={eta} />
       <CurrentConditionsStatus conditionStatus={conditionStatus} />
@@ -19,17 +19,17 @@ const NextBestJourney = ({ timeToLeave, steps, eta, conditionStatus }) =>
   </Segment>);
 
 NextBestJourney.propTypes = {
-  timeToLeave: PropTypes.number.isRequired,
-  steps: PropTypes.node.isRequired,
+  timeToLeaveInSeconds: PropTypes.number.isRequired,
+  steps: PropTypes.arrayOf(PropTypes.object).isRequired,
   eta: PropTypes.string.isRequired,
   conditionStatus: PropTypes.string.isRequired,
 };
 
 NextBestJourney.defaultProps = {
-  timeToLeave: 1,
-  steps: [''],
+  timeToLeaveInSeconds: 1,
+  steps: [{}],
   eta: '',
-  conditionStatus: '',
+  conditionStatus: 'on-time',
 };
 
 export default NextBestJourney;

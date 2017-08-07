@@ -5,7 +5,7 @@ describe('root reducer', () => {
   it('should return the initial state', () => {
     const expectedInitialState = {
       configuration: {
-        currentLocation: {},
+        currentLocation: { address: '44 Tehama St, San Francisco, CA 94105' },
       },
       destinations: {
         ids: [],
@@ -20,9 +20,9 @@ describe('root reducer', () => {
   });
 
   it('should handle action type UPDATE_CURRENT_LOCATION', () => {
-    let oldState = {
+    const oldState = {
       configuration: {
-        currentLocation: {},
+        currentLocation: { address: '44 Tehama St, San Francisco, CA 94105' },
       },
       destinations: {
         ids: [],
@@ -33,46 +33,16 @@ describe('root reducer', () => {
       },
     };
 
-    let action = {
+    const action = {
       type: TYPES.UPDATE_CURRENT_LOCATION,
       currentLocation: {
-        name: 'Galvanize',
-        address: '44 Tehama St, San Francisco, CA 94105',
-      },
-    };
-
-    let newState = {
-      configuration: {
-        currentLocation: {
-          name: 'Galvanize',
-          address: '44 Tehama St, San Francisco, CA 94105',
-        },
-      },
-      destinations: {
-        ids: [],
-        byId: {},
-      },
-      journeys: {
-        byDestinationId: {},
-      },
-    };
-
-    expect(reducer(oldState, action)).toEqual(newState);
-
-    oldState = newState;
-
-    action = {
-      type: TYPES.UPDATE_CURRENT_LOCATION,
-      currentLocation: {
-        name: 'Galvanize!',
         address: '543 Howard St, San Francisco, CA 94105',
       },
     };
 
-    newState = {
+    const newState = {
       configuration: {
         currentLocation: {
-          name: 'Galvanize!',
           address: '543 Howard St, San Francisco, CA 94105',
         },
       },
@@ -92,7 +62,6 @@ describe('root reducer', () => {
     let oldState = {
       configuration: {
         currentLocation: {
-          name: 'Galvanize',
           address: '44 Tehama St, San Francisco, CA 94105',
         },
       },
@@ -107,26 +76,20 @@ describe('root reducer', () => {
 
     let action = {
       type: TYPES.ADD_DESTINATION,
-      destination: {
-        id: 5,
-        name: 'SFO',
-        address: 'SFO, San Francisco, CA 94128',
-      },
+      destination: 'SFO, San Francisco, CA 94128',
     };
 
     let newState = {
       configuration: {
         currentLocation: {
-          name: 'Galvanize',
           address: '44 Tehama St, San Francisco, CA 94105',
         },
       },
       destinations: {
-        ids: [5],
+        ids: [1],
         byId: {
-          5: {
-            id: 5,
-            name: 'SFO',
+          1: {
+            id: 1,
             address: 'SFO, San Francisco, CA 94128',
           },
         },
@@ -142,31 +105,24 @@ describe('root reducer', () => {
 
     action = {
       type: TYPES.ADD_DESTINATION,
-      destination: {
-        id: 6,
-        name: 'OAK',
-        address: 'OAK, Oakland, CA 94234',
-      },
+      destination: 'OAK, Oakland, CA 94234',
     };
 
     newState = {
       configuration: {
         currentLocation: {
-          name: 'Galvanize',
           address: '44 Tehama St, San Francisco, CA 94105',
         },
       },
       destinations: {
-        ids: [5, 6],
+        ids: [1, 2],
         byId: {
-          5: {
-            id: 5,
-            name: 'SFO',
+          1: {
+            id: 1,
             address: 'SFO, San Francisco, CA 94128',
           },
-          6: {
-            id: 6,
-            name: 'OAK',
+          2: {
+            id: 2,
             address: 'OAK, Oakland, CA 94234',
           },
         },
@@ -183,7 +139,6 @@ describe('root reducer', () => {
     let oldState = {
       configuration: {
         currentLocation: {
-          name: 'Galvanize',
           address: '44 Tehama St, San Francisco, CA 94105',
         },
       },
@@ -192,12 +147,10 @@ describe('root reducer', () => {
         byId: {
           5: {
             id: 5,
-            name: 'SFO',
             address: 'SFO, San Francisco, CA 94128',
           },
           6: {
             id: 6,
-            name: 'OAK',
             address: 'OAK, Oakland, CA 94234',
           },
         },
@@ -216,7 +169,6 @@ describe('root reducer', () => {
     let newState = {
       configuration: {
         currentLocation: {
-          name: 'Galvanize',
           address: '44 Tehama St, San Francisco, CA 94105',
         },
       },
@@ -225,12 +177,10 @@ describe('root reducer', () => {
         byId: {
           5: {
             id: 5,
-            name: 'SFO',
             address: 'SFO, San Francisco, CA 94128',
           },
           6: {
             id: 6,
-            name: 'OAK',
             address: 'OAK, Oakland, CA 94234',
           },
         },
@@ -258,7 +208,6 @@ describe('root reducer', () => {
     newState = {
       configuration: {
         currentLocation: {
-          name: 'Galvanize',
           address: '44 Tehama St, San Francisco, CA 94105',
         },
       },
@@ -267,12 +216,10 @@ describe('root reducer', () => {
         byId: {
           5: {
             id: 5,
-            name: 'SFO',
             address: 'SFO, San Francisco, CA 94128',
           },
           6: {
             id: 6,
-            name: 'OAK',
             address: 'OAK, Oakland, CA 94234',
           },
         },
@@ -291,11 +238,10 @@ describe('root reducer', () => {
     expect(reducer(oldState, action)).toEqual(newState);
   });
 
-  it('should handle action type REMOVE_JOURNEY', () => {
+  it('should handle action type REMOVE_JOURNEYS', () => {
     const oldState = {
       configuration: {
         currentLocation: {
-          name: 'Galvanize',
           address: '44 Tehama St, San Francisco, CA 94105',
         },
       },
@@ -304,12 +250,10 @@ describe('root reducer', () => {
         byId: {
           5: {
             id: 5,
-            name: 'SFO',
             address: 'SFO, San Francisco, CA 94128',
           },
           6: {
             id: 6,
-            name: 'OAK',
             address: 'OAK, Oakland, CA 94234',
           },
         },
@@ -329,15 +273,13 @@ describe('root reducer', () => {
     };
 
     const action = {
-      type: TYPES.REMOVE_JOURNEY,
+      type: TYPES.REMOVE_JOURNEYS,
       destinationId: 5,
-      index: 0,
     };
 
     const newState = {
       configuration: {
         currentLocation: {
-          name: 'Galvanize',
           address: '44 Tehama St, San Francisco, CA 94105',
         },
       },
@@ -346,19 +288,17 @@ describe('root reducer', () => {
         byId: {
           5: {
             id: 5,
-            name: 'SFO',
             address: 'SFO, San Francisco, CA 94128',
           },
           6: {
             id: 6,
-            name: 'OAK',
             address: 'OAK, Oakland, CA 94234',
           },
         },
       },
       journeys: {
         byDestinationId: {
-          5: [{ departureTime: '11:55pm', arrivalTime: '12:45am' }],
+          5: [],
           6: [
             { departureTime: '11:50pm', arrivalTime: '12:30am' },
             { departureTime: '11:55pm', arrivalTime: '12:45am' },
@@ -374,7 +314,6 @@ describe('root reducer', () => {
     const oldState = {
       configuration: {
         currentLocation: {
-          name: 'Galvanize',
           address: '44 Tehama St, San Francisco, CA 94105',
         },
       },
@@ -383,12 +322,10 @@ describe('root reducer', () => {
         byId: {
           5: {
             id: 5,
-            name: 'SFO',
             address: 'SFO, San Francisco, CA 94128',
           },
           6: {
             id: 6,
-            name: 'OAK',
             address: 'OAK, Oakland, CA 94234',
           },
         },
@@ -415,7 +352,6 @@ describe('root reducer', () => {
     const newState = {
       configuration: {
         currentLocation: {
-          name: 'Galvanize',
           address: '44 Tehama St, San Francisco, CA 94105',
         },
       },
@@ -424,12 +360,10 @@ describe('root reducer', () => {
         byId: {
           5: {
             id: 5,
-            name: 'SFO',
             address: 'SFO, San Francisco, CA 94128',
           },
           6: {
             id: 6,
-            name: 'OAK',
             address: 'OAK, Oakland, CA 94234',
           },
         },

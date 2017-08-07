@@ -1,20 +1,24 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import TimeToLeave from './TimeToLeave';
+import TimeToLeave, { timerExpired } from './TimeToLeave';
 
 describe('TimeToLeave', () => {
   it('should render list item', () => {
-    const minutes = 5;
+    const seconds = 120;
 
-    const component = mount(<TimeToLeave timeToLeave={minutes} />);
+    const component = mount(<TimeToLeave timeToLeaveInSeconds={seconds} />);
     expect(toJson(component)).toMatchSnapshot();
   });
 
-  it('has timeToLeave prop as a number of minutes', () => {
-    const minutes = 5;
+  it('has timeToLeaveInSeconds prop as a number of seconds', () => {
+    const seconds = 120;
 
-    const component = mount(<TimeToLeave timeToLeave={minutes} />);
-    expect(component.props().timeToLeave).toEqual(minutes);
+    const component = mount(<TimeToLeave timeToLeaveInSeconds={seconds} />);
+    expect(component.props().timeToLeaveInSeconds).toEqual(seconds);
+  });
+
+  it('has timerExpired callback', () => {
+    expect(timerExpired()).toEqual(<div>RUN!!!</div>);
   });
 });

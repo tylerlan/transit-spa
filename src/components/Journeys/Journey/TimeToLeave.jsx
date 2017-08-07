@@ -8,25 +8,21 @@ export function timerExpired() {
   return <div>RUN!!!</div>;
 }
 
-const TimeToLeave = ({ timeToLeave }) => {
-  const seconds = timeToLeave * 60;
-  return (
-    <List.Item>
-      <Icon name="hourglass half" size="large" />
-      <List.Content>
-        <List.Header>leave in</List.Header>
-        <Timer seconds={seconds} onComplete={timerExpired} />
-      </List.Content>
-    </List.Item>
-  );
-};
+const TimeToLeave = ({ timeToLeaveInSeconds }) =>
+  (<List.Item>
+    <Icon name="hourglass half" size="large" />
+    <List.Content>
+      <List.Header>leave in</List.Header>
+      <Timer seconds={timeToLeaveInSeconds} onComplete={timerExpired} />
+    </List.Content>
+  </List.Item>);
 
 TimeToLeave.propTypes = {
-  timeToLeave: PropTypes.number.isRequired,
+  timeToLeaveInSeconds: PropTypes.number.isRequired,
 };
 
 TimeToLeave.defaultProps = {
-  timeToLeave: 5,
+  timeToLeaveInSeconds: 5,
 };
 
 export default TimeToLeave;

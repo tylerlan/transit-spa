@@ -1,92 +1,119 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import BestJourney from './BestJourney';
 import NextBestJourney from './NextBestJourney';
-import { journey1, journey2 } from '../../seeds/mapsApiSample';
 
-function timeToLeaveConverter(currentTimeStamp, futureTimeStamp) {
-  return Math.ceil((futureTimeStamp - currentTimeStamp) / 60);
+import { fetchJourneys } from '../../actions';
+
+export function timeToLeaveConverter(departureTimeInSeconds) {
+  const currentTimeInSeconds = Date.now() / 1000;
+  const diff = departureTimeInSeconds - currentTimeInSeconds;
+
+  return Math.floor(diff);
 }
 
-const currentTime = { text: '11:40pm', value: 1501566738 };
+export class JourneyTable extends Component {
+  componentDidMount() {
+    const { destinationId, origin, destinationsById } = this.props;
+    this.props.fetchJourneys(destinationId, origin, destinationsById[destinationId].address);
+  }
 
-function getTransitSteps(journeyNum) {
-  return journeyNum.legs[0].steps.map((step) => {
-    const modeWasTransit = step.travel_mode === 'TRANSIT';
+  render() {
+    const { journeys } = this.props;
 
-    return modeWasTransit
-      ? `${step.transit_details.line.short_name} ${step.transit_details.line.name} ${step
-        .transit_details.line.vehicle.name} to ${step.transit_details.departure_stop.name}`
-      : `${step.duration.text} ${step.html_instructions}`;
-  });
+    if (!journeys) return <div>Loading...</div>;
+
+    const bestJourney = journeys[0];
+    const nextBestJourney = journeys[1];
+
+    const timeToLeaveBest = timeToLeaveConverter(bestJourney.departureTimeUTC);
+    const timeToLeaveNextBest = timeToLeaveConverter(nextBestJourney.departureTimeUTC);
+
+    return (
+      <div>
+        <BestJourney
+          timeToLeaveInSeconds={timeToLeaveBest}
+          steps={bestJourney.transitSteps}
+          eta={bestJourney.arrivalTimeText}
+          conditionStatus={'on-time'}
+        />
+        <NextBestJourney
+          timeToLeaveInSeconds={timeToLeaveNextBest}
+          steps={nextBestJourney.transitSteps}
+          eta={nextBestJourney.arrivalTimeText}
+          conditionStatus={'future undertain -- see journey table'}
+        />
+      </div>
+    );
+  }
 }
-
-const journeysByDestId = {
-  1: [
-    {
-      currentTime: currentTime.text,
-      address: journey1.legs[0].end_address,
-      timeToLeave: timeToLeaveConverter(currentTime.value, journey1.legs[0].departure_time.value),
-      steps: getTransitSteps(journey1),
-      eta: journey1.legs[0].arrival_time.text,
-      conditionStatus: 'on-time',
-    },
-    {
-      currentTime: currentTime.text,
-      address: journey1.legs[0].end_address,
-      timeToLeave: 18,
-      steps: [],
-      eta: '12:13pm',
-      conditionStatus: 'on-time',
-    },
-  ],
-  2: [
-    {
-      currentTime: currentTime.text,
-      address: journey2.legs[0].end_address,
-      timeToLeave: timeToLeaveConverter(currentTime.value, journey2.legs[0].departure_time.value),
-      steps: getTransitSteps(journey2),
-      eta: journey2.legs[0].arrival_time.text,
-      conditionStatus: 'delayed',
-    },
-    {
-      currentTime: currentTime.text,
-      address: journey2.legs[0].end_address,
-      timeToLeave: 12,
-      steps: [],
-      eta: '12:37pm',
-      conditionStatus: 'on-time',
-    },
-  ],
-};
-
-const JourneyTable = ({ id }) => {
-  const { timeToLeave, steps, eta, conditionStatus } = journeysByDestId[id][0];
-  return (
-    <div>
-      <BestJourney
-        timeToLeave={timeToLeave}
-        steps={steps}
-        eta={eta}
-        conditionStatus={conditionStatus}
-      />
-      <NextBestJourney
-        timeToLeave={journeysByDestId[id][1].timeToLeave}
-        steps={journeysByDestId[id][1].steps}
-        eta={journeysByDestId[id][1].eta}
-        conditionStatus={journeysByDestId[id][1].conditionStatus}
-      />
-    </div>
-  );
-};
 
 JourneyTable.propTypes = {
-  id: PropTypes.number.isRequired,
+  destinationId: PropTypes.number.isRequired,
+  origin: PropTypes.string.isRequired,
+  destinationsById: PropTypes.shape({
+    1: PropTypes.object,
+  }).isRequired,
+  fetchJourneys: PropTypes.func.isRequired,
+  journeys: PropTypes.arrayOf(PropTypes.object),
 };
 
 JourneyTable.defaultProps = {
-  id: 1,
+  destinationId: 1,
+  origin: '',
+  destinationsById: { 1: {} },
+  fetchJourneys: () => {},
+  journeys: [
+    {
+      departureTimeUTC: Date.now(),
+      arrivalTimeText: '00:00am',
+      transitSteps: [
+        { duration: '1 mins', instruction: 'Walk to Some St. Station', mode: 'WALKING' },
+        {
+          duration: '23 mins',
+          instruction: 'Metro rail towards Warm Springs/South Fremont',
+          mode: 'TRANSIT',
+        },
+      ],
+    },
+    {
+      departureTimeUTC: Date.now(),
+      arrivalTimeText: '00:00pm',
+      transitSteps: [
+        { duration: '4 mins', instruction: 'Walk to Some St. Station', mode: 'WALKING' },
+        {
+          duration: '56 mins',
+          instruction: 'Metro rail towards Warm Springs/South Fremont',
+          mode: 'TRANSIT',
+        },
+      ],
+    },
+  ],
+};
+export const mapStateToProps = (state, ownProps) => {
+  const origin = state.configuration.currentLocation.address;
+  const destinationsById = state.destinations.byId;
+  const destinationId = ownProps.id;
+  const journeys = state.journeys.byDestinationId[destinationId];
+
+  return {
+    origin,
+    journeys,
+    destinationId,
+    destinationsById,
+  };
 };
 
-export default JourneyTable;
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      fetchJourneys,
+    },
+    dispatch,
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(JourneyTable);

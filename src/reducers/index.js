@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
 import * as TYPES from '../constants/constants';
 
-export function configuration(state = { currentLocation: {} }, action) {
+export function configuration(
+  state = { currentLocation: { address: '44 Tehama St, San Francisco, CA 94105' } },
+  action,
+) {
   switch (action.type) {
     case TYPES.UPDATE_CURRENT_LOCATION:
       return {
@@ -16,12 +19,17 @@ export function configuration(state = { currentLocation: {} }, action) {
 export function destinations(state = { ids: [], byId: {} }, action) {
   const newDestinationsById = {};
   let destinationsIdsToKeep = [];
+  let nextId;
   switch (action.type) {
     case TYPES.ADD_DESTINATION:
-      newDestinationsById[action.destination.id] = { ...action.destination };
+      nextId = state.ids.length ? Math.max(...state.ids) + 1 : 1;
+
+      newDestinationsById.id = nextId;
+      newDestinationsById.address = action.destination;
+
       return {
-        ids: [...state.ids, action.destination.id],
-        byId: { ...state.byId, ...newDestinationsById },
+        ids: [...state.ids, nextId],
+        byId: { ...state.byId, [nextId]: newDestinationsById },
       };
 
     case TYPES.REMOVE_DESTINATION:
@@ -40,7 +48,6 @@ export function journeys(state = { byDestinationId: {} }, action) {
   const dId = action.destinationId;
   let journeysForDest;
   const newJourneysByDestinationId = {};
-  let journeysToKeep = [];
   switch (action.type) {
     case TYPES.ADD_JOURNEYS:
       if (state.byDestinationId[dId]) {
@@ -53,9 +60,8 @@ export function journeys(state = { byDestinationId: {} }, action) {
         byDestinationId: { ...state.byDestinationId, ...newJourneysByDestinationId },
       };
 
-    case TYPES.REMOVE_JOURNEY:
-      journeysToKeep = state.byDestinationId[dId].filter((journey, ix) => ix !== action.index);
-      newJourneysByDestinationId[dId] = journeysToKeep;
+    case TYPES.REMOVE_JOURNEYS:
+      newJourneysByDestinationId[dId] = [];
       return {
         byDestinationId: { ...state.byDestinationId, ...newJourneysByDestinationId },
       };

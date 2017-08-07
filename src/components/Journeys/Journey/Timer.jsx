@@ -7,6 +7,10 @@ class Timer extends Component {
     this.state = { count: props.seconds, expired: false };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ count: nextProps.seconds });
+  }
+
   decrementOrExpire() {
     return this.state.count > 0 ? { count: this.state.count - 1 } : { expired: true };
   }

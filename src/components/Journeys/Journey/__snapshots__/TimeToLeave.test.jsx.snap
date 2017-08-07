@@ -2,7 +2,7 @@
 
 exports[`TimeToLeave should render list item 1`] = `
 <TimeToLeave
-  timeToLeave={5}
+  timeToLeaveInSeconds={120}
 >
   <ListItem>
     <div
@@ -33,10 +33,10 @@ exports[`TimeToLeave should render list item 1`] = `
           </ListHeader>
           <Timer
             onComplete={[Function]}
-            seconds={300}
+            seconds={120}
           >
             <div>
-              05
+              02
               :
               00
             </div>

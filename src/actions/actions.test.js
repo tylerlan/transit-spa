@@ -6,14 +6,12 @@ import * as actions from './index';
 describe('actions', () => {
   it('should create an action to update current location', () => {
     const location = {
-      name: 'Galvanize',
       address: '44 Tehama St, San Francisco, CA 94105',
     };
 
     const expectedAction = {
       type: TYPES.UPDATE_CURRENT_LOCATION,
       currentLocation: {
-        name: 'Galvanize',
         address: '44 Tehama St, San Francisco, CA 94105',
       },
     };
@@ -22,19 +20,11 @@ describe('actions', () => {
   });
 
   it('should create an action to add a destination', () => {
-    const destination = {
-      id: 5,
-      name: 'SFO',
-      address: 'SFO, San Francisco, CA 94128',
-    };
+    const destination = 'SFO, San Francisco, CA 94128';
 
     const expectedAction = {
       type: TYPES.ADD_DESTINATION,
-      destination: {
-        id: 5,
-        name: 'SFO',
-        address: 'SFO, San Francisco, CA 94128',
-      },
+      destination: 'SFO, San Francisco, CA 94128',
     };
 
     expect(actions.addDestination(destination)).toEqual(expectedAction);
@@ -61,17 +51,15 @@ describe('actions', () => {
     expect(actions.addJourneys(destinationId, journeys)).toEqual(expectedAction);
   });
 
-  it('should create an action to remove a journey for a destination', () => {
+  it('should create an action to remove all journeys for a destination', () => {
     const destinationId = 5;
-    const index = 0;
 
     const expectedAction = {
-      type: TYPES.REMOVE_JOURNEY,
+      type: TYPES.REMOVE_JOURNEYS,
       destinationId: 5,
-      index: 0,
     };
 
-    expect(actions.removeJourney(destinationId, index)).toEqual(expectedAction);
+    expect(actions.removeJourneys(destinationId)).toEqual(expectedAction);
   });
 
   it('should create an action to remove a destination', () => {
@@ -88,12 +76,24 @@ describe('actions', () => {
   it('should fetch journeys from API', () => {
     const mockApiFetchJourneys = jest.fn();
     mockApiFetchJourneys.mockReturnValue(
-      Promise.resolve({
-        body: [
-          { departureTime: '11:50pm', arrivalTime: '12:30am' },
-          { departureTime: '11:55pm', arrivalTime: '12:45am' },
-        ],
-      }),
+      Promise.resolve([
+        {
+          legs: [
+            {
+              end_address: '123 Main st',
+              arrival_time: { text: '11:41am' },
+              departure_time: { value: 1501871210 },
+              steps: [
+                {
+                  html_instructions: 'Walk to Montgomery St. Station',
+                  travel_mode: 'WALKING',
+                  duration: { text: '8 mins' },
+                },
+              ],
+            },
+          ],
+        },
+      ]),
     );
 
     const extraArgument = {
@@ -104,14 +104,15 @@ describe('actions', () => {
 
     const initialState = {
       configuration: {
-        currentLocation: {},
+        currentLocation: {
+          address: '44 Tehama St, San Francisco, CA 94105',
+        },
       },
       destinations: {
         ids: [5],
         byId: {
           5: {
             id: 5,
-            name: 'SFO',
             address: 'SFO, San Francisco, CA 94128',
           },
         },
@@ -126,8 +127,18 @@ describe('actions', () => {
         type: TYPES.ADD_JOURNEYS,
         destinationId: 5,
         journeys: [
-          { departureTime: '11:50pm', arrivalTime: '12:30am' },
-          { departureTime: '11:55pm', arrivalTime: '12:45am' },
+          {
+            destination: '123 Main st',
+            arrivalTimeText: '11:41am',
+            departureTimeUTC: 1501871210,
+            transitSteps: [
+              {
+                instruction: 'Walk to Montgomery St. Station',
+                mode: 'WALKING',
+                duration: '8 mins',
+              },
+            ],
+          },
         ],
       },
     ];

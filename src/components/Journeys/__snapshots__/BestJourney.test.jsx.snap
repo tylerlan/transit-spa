@@ -1,0 +1,268 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BestJourney should render when passed required props 1`] = `
+<BestJourney
+  conditionStatus="on-time"
+  eta="11:00am"
+  steps={
+    Array [
+      Object {
+        "duration": "1 mins",
+        "instruction": "Walk to Some St. Station",
+        "mode": "WALKING",
+      },
+    ]
+  }
+  timeToLeaveInSeconds={120}
+>
+  <Segment>
+    <div
+      className="ui segment"
+    >
+      <List
+        divided={true}
+        horizontal={true}
+        size="huge"
+      >
+        <div
+          className="ui huge divided horizontal list"
+          role="list"
+        >
+          <TimeToLeave
+            timeToLeaveInSeconds={120}
+          >
+            <ListItem>
+              <div
+                className="item"
+                onClick={[Function]}
+                role="listitem"
+              >
+                <Icon
+                  as="i"
+                  name="hourglass half"
+                  size="large"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="hourglass half large icon"
+                  />
+                </Icon>
+                <ListContent>
+                  <div
+                    className="content"
+                  >
+                    <ListHeader>
+                      <div
+                        className="header"
+                      >
+                        leave in
+                      </div>
+                    </ListHeader>
+                    <Timer
+                      onComplete={[Function]}
+                      seconds={120}
+                    >
+                      <div>
+                        02
+                        :
+                        00
+                      </div>
+                    </Timer>
+                  </div>
+                </ListContent>
+              </div>
+            </ListItem>
+          </TimeToLeave>
+          <JourneyVisualization
+            active={false}
+            steps={
+              Array [
+                Object {
+                  "duration": "1 mins",
+                  "instruction": "Walk to Some St. Station",
+                  "mode": "WALKING",
+                },
+              ]
+            }
+          >
+            <ListItem>
+              <div
+                className="item"
+                onClick={[Function]}
+                role="listitem"
+              >
+                <StepGroup>
+                  <div
+                    className="ui steps"
+                  >
+                    <Step
+                      disabled={false}
+                    >
+                      <div
+                        className="step"
+                        onClick={[Function]}
+                      >
+                        <Icon
+                          as="i"
+                          name="blind"
+                          size="big"
+                        >
+                          <i
+                            aria-hidden="true"
+                            className="blind big icon"
+                          />
+                        </Icon>
+                        <StepContent
+                          title="Walk"
+                        >
+                          <div
+                            className="content"
+                          >
+                            <StepTitle
+                              title="Walk"
+                            >
+                              <div
+                                className="title"
+                              >
+                                Walk
+                              </div>
+                            </StepTitle>
+                          </div>
+                        </StepContent>
+                      </div>
+                    </Step>
+                  </div>
+                </StepGroup>
+              </div>
+            </ListItem>
+          </JourneyVisualization>
+          <ArriveByEstimate
+            eta="11:00am"
+          >
+            <ListItem>
+              <div
+                className="item"
+                onClick={[Function]}
+                role="listitem"
+              >
+                <Icon
+                  as="i"
+                  name="clock"
+                  size="large"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="clock large icon"
+                  />
+                </Icon>
+                <ListContent>
+                  <div
+                    className="content"
+                  >
+                    <ListHeader>
+                      <div
+                        className="header"
+                      >
+                        ETA
+                      </div>
+                    </ListHeader>
+                    11:00am
+                  </div>
+                </ListContent>
+              </div>
+            </ListItem>
+          </ArriveByEstimate>
+          <CurrentConditionsStatus
+            conditionStatus="on-time"
+          >
+            <ListItem>
+              <div
+                className="item"
+                onClick={[Function]}
+                role="listitem"
+              >
+                <ListContent>
+                  <div
+                    className="content"
+                  >
+                    <ListHeader>
+                      <div
+                        className="header"
+                      >
+                        status:
+                      </div>
+                    </ListHeader>
+                    <Popup
+                      content="on-time"
+                      inverted={true}
+                      offset={50}
+                      on="hover"
+                      position="right center"
+                      style={
+                        Object {
+                          "borderRadius": 0,
+                          "opacity": 0.7,
+                          "padding": "2em",
+                        }
+                      }
+                      trigger={
+                        <Icon
+                          as="i"
+                          name="checkmark"
+                          size="large"
+                        />
+                      }
+                    >
+                      <Portal
+                        closeOnDocumentClick={true}
+                        closeOnEscape={true}
+                        closeOnTriggerMouseLeave={true}
+                        mouseEnterDelay={50}
+                        mouseLeaveDelay={70}
+                        onClose={[Function]}
+                        onMount={[Function]}
+                        onOpen={[Function]}
+                        onUnmount={[Function]}
+                        openOnTriggerClick={true}
+                        openOnTriggerMouseEnter={true}
+                        trigger={
+                          <Icon
+                            as="i"
+                            name="checkmark"
+                            size="large"
+                          />
+                        }
+                      >
+                        <Icon
+                          as="i"
+                          name="checkmark"
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onMouseEnter={[Function]}
+                          onMouseLeave={[Function]}
+                          size="large"
+                        >
+                          <i
+                            aria-hidden="true"
+                            className="checkmark large icon"
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onMouseEnter={[Function]}
+                            onMouseLeave={[Function]}
+                          />
+                        </Icon>
+                      </Portal>
+                    </Popup>
+                  </div>
+                </ListContent>
+              </div>
+            </ListItem>
+          </CurrentConditionsStatus>
+        </div>
+      </List>
+    </div>
+  </Segment>
+</BestJourney>
+`;
