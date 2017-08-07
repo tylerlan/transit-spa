@@ -7,6 +7,8 @@ import { bindActionCreators } from 'redux';
 import { addDestination } from '../../actions';
 import './button.css';
 
+import Api from '../../utils/Api';
+
 class PlacesAutocompleteForm extends Component {
   constructor(props) {
     super(props);
@@ -14,17 +16,33 @@ class PlacesAutocompleteForm extends Component {
     this.onChange = address => this.setState({ address });
   }
 
+  reportError = (message) => {
+    alert(message);
+    this.setState({ address: '' });
+  };
+
   handleFormSubmit = (event) => {
     event.preventDefault();
-    this.props.onClick();
-    this.props.addDestination(this.state.address);
+
+    Api.fetchJourneys(this.props.origin, this.state.address)
+      .then((result) => {
+        if (result.length > 1) {
+          this.props.addDestination(this.state.address);
+          this.props.onClick();
+          return;
+        }
+        return this.reportError('no transit options available');
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   render() {
     const inputProps = {
       value: this.state.address,
       onChange: this.onChange,
-      placeholder: 'ZOOM!',
+      placeholder: 'Choose a new destination',
     };
 
     return (
@@ -48,6 +66,14 @@ PlacesAutocompleteForm.defaultProps = {
   addDestination: () => {},
 };
 
+export const mapStateToProps = (state) => {
+  const origin = state.configuration.currentLocation.address;
+
+  return {
+    origin,
+  };
+};
+
 export const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
@@ -56,4 +82,4 @@ export const mapDispatchToProps = dispatch =>
     dispatch,
   );
 
-export default connect(null, mapDispatchToProps)(PlacesAutocompleteForm);
+export default connect(mapStateToProps, mapDispatchToProps)(PlacesAutocompleteForm);
