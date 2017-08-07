@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { addDestination } from '../../actions';
 import './button.css';
 
-class PlacesAutocompleteForm extends Component {
+export class PlacesAutocompleteForm extends Component {
   constructor(props) {
     super(props);
     this.state = { address: '600 Guerrero St, San Francisco, CA 94110' };
