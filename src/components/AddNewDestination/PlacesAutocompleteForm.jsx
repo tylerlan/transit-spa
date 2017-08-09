@@ -9,7 +9,7 @@ import './button.css';
 
 import Api from '../../utils/Api';
 
-class PlacesAutocompleteForm extends Component {
+export class PlacesAutocompleteForm extends Component {
   constructor(props) {
     super(props);
     this.state = { address: '600 Guerrero St, San Francisco, CA 94110' };
