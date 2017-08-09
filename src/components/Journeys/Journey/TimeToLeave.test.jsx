@@ -1,11 +1,11 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import TimeToLeave, { timerExpired } from './TimeToLeave';
 
 describe('TimeToLeave', () => {
-  it('should render list item', () => {
-    const component = mount(<TimeToLeave timeToLeaveInSeconds={120} />);
+  it('renders list item', () => {
+    const component = shallow(<TimeToLeave timeToLeaveInSeconds={120} />);
     expect(toJson(component)).toMatchSnapshot();
   });
 
@@ -14,9 +14,8 @@ describe('TimeToLeave', () => {
     expect(component.props().timeToLeaveInSeconds).toEqual(120);
   });
 
-  it('has timerExpired callback', () => {
-    const component = mount(<TimeToLeave timeToLeaveInSeconds={120} />);
-    expect(component.instance().timerExpired()).toEqual(true);
-    // expect(timerExpired()).toEqual(<div>RUN!!!</div>);
+  it('has timerExpired method', () => {
+    const component = shallow(<TimeToLeave timeToLeaveInSeconds={120} />);
+    expect(component.instance().timerExpired());
   });
 });
