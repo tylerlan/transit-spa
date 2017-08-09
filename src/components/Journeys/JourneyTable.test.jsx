@@ -58,7 +58,7 @@ describe('JourneyTable', () => {
 
   it('calls fetchJourneys on load', () => {
     const fetchJourneys = jest.fn();
-    const component = mount(
+    mount(
       <JourneyTable
         id={1}
         destinationId={testData.destinationId}

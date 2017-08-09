@@ -2,13 +2,25 @@ import { combineReducers } from 'redux';
 import * as TYPES from '../constants/constants';
 
 export function configuration(
-  state = { currentLocation: { address: '44 Tehama St, San Francisco, CA 94105' } },
-  action,
-) {
+  state = { geolocating: true,
+    currentLocation: {
+      address: '44 Tehama St, San Francisco, CA 94105',
+      lat: 37.7873889,
+      lng: -122.3964106 },
+  }, action) {
   switch (action.type) {
+    case TYPES.GEOLOCATING:
+      return { currentLocation: { ...state.currentLocation,
+        geolocating: true } };
+
     case TYPES.UPDATE_CURRENT_LOCATION:
       return {
-        currentLocation: { ...state.currentLocation, ...action.currentLocation },
+        geolocating: false,
+        currentLocation: { ...state.currentLocation,
+          address: action.currentLocation.address,
+          lat: action.currentLocation.lat,
+          lng: action.currentLocation.lng,
+        },
       };
 
     default:

@@ -1,22 +1,64 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+// import nock from 'nock';
 import * as TYPES from '../constants/constants';
 import * as actions from './index';
 
 describe('actions', () => {
-  it('should create an action to update current location', () => {
-    const location = {
-      address: '44 Tehama St, San Francisco, CA 94105',
-    };
+  it('should create actions to display geolocating in progress and update current location', () => {
+    const apiGetCurrentLocation = jest.fn();
 
-    const expectedAction = {
-      type: TYPES.UPDATE_CURRENT_LOCATION,
-      currentLocation: {
+    apiGetCurrentLocation.mockReturnValue(
+      Promise.resolve({
         address: '44 Tehama St, San Francisco, CA 94105',
+        lat: 37.7873889,
+        lng: -122.3964106,
+      }),
+    );
+
+    const extraArgument = {
+      Api: {
+        getCurrentLocation: apiGetCurrentLocation,
       },
     };
 
-    expect(actions.updateCurrentLocation(location)).toEqual(expectedAction);
+    const initialState = {
+      configuration: {
+        geolocating: false,
+        currentLocation: {
+          address: '44 Tehama St, San Francisco, CA 94105',
+        },
+      },
+      destinations: {
+        ids: [5],
+        byId: {
+          5: {
+            id: 5,
+            address: 'SFO, San Francisco, CA 94128',
+          },
+        },
+      },
+      journeys: {
+        byDestinationId: {},
+      },
+    };
+
+    const expectedActions = [
+      { type: TYPES.GEOLOCATING },
+      { type: TYPES.UPDATE_CURRENT_LOCATION,
+        currentLocation: {
+          address: '44 Tehama St, San Francisco, CA 94105',
+          lat: 37.7873889,
+          lng: -122.3964106 },
+      },
+    ];
+
+    const mockStore = configureStore([thunk.withExtraArgument(extraArgument)]);
+    const store = mockStore(initialState);
+
+    return store.dispatch(actions.updateCurrentLocation()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
   });
 
   it('should create an action to add a destination', () => {
@@ -148,7 +190,7 @@ describe('actions', () => {
     const mockStore = configureStore([thunk.withExtraArgument(extraArgument)]);
     const store = mockStore(initialState);
 
-    return store.dispatch(actions.fetchJourneys(5, 'home', 'work', '07:15am')).then(() => {
+    return store.dispatch(actions.fetchJourneys(5, 'home', 'work')).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import Timer, { decrement, onComplete } from './Timer';
+import Timer from './Timer';
 
 describe('Timer', () => {
   const callback = () => {};
