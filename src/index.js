@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import rootReducer from './reducers/index';
 
 import App from './App';
 import store from './store';
@@ -17,3 +18,5 @@ ReactDOM.render(
 );
 
 registerServiceWorker();
+export default App;
+export { rootReducer };

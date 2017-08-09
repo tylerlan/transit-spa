@@ -1,16 +1,17 @@
 .App {
-  text-align: center;
+	text-align: center;
+}
+.transit-container {
+	height: inherit;
+	padding: 0 !important;
+}
+#button-div {
+	height: inherit !important;
 }
 
-#destinations-container {
-  justify-content: center;
-  margin: 2% 0;
-}
-
-#new-destination-container {
-  justify-content: center;
-}
-
-#content-container {
-  justify-content: flex-end;
+.transit-button {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	margin: 0 !important;
 }

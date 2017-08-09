@@ -7,10 +7,11 @@ exports[`AddNewDestinationButton should render button 1`] = `
   <Button
     as="button"
     circular={true}
+    className="transit-button"
     color="blue"
     icon="plus"
     onClick={[Function]}
-    size="huge"
+    size="massive"
   />
 </div>
 `;

@@ -6,20 +6,22 @@ import AddNewDestinationRow from './components/AddNewDestination/AddNewDestinati
 import './App.css';
 
 const App = () =>
-  (<div>
-    <Container>
-      <Grid padded centered>
-        <Grid.Column id="content-container">
+  (<div className="transit-container">
+    <Container className="transit-container">
+      <Grid className="transit-container" padded centered>
+        <Grid.Column className="transit-container">
           <Grid.Row id="current-location-container">
             <CurrentLocation />
           </Grid.Row>
-
           <Grid.Row id="destinations-container">
             <DestinationTable />
           </Grid.Row>
 
-          <Grid.Row id="new-destination-container">
-            <Segment>
+          <Grid.Row
+            className="transit-container"
+            id="new-destinations-container"
+          >
+            <Segment className="transit-container" textAlign="center">
               <AddNewDestinationRow />
             </Segment>
           </Grid.Row>
