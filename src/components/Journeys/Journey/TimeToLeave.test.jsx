@@ -5,20 +5,18 @@ import TimeToLeave, { timerExpired } from './TimeToLeave';
 
 describe('TimeToLeave', () => {
   it('should render list item', () => {
-    const seconds = 120;
-
-    const component = mount(<TimeToLeave timeToLeaveInSeconds={seconds} />);
+    const component = mount(<TimeToLeave timeToLeaveInSeconds={120} />);
     expect(toJson(component)).toMatchSnapshot();
   });
 
   it('has timeToLeaveInSeconds prop as a number of seconds', () => {
-    const seconds = 120;
-
-    const component = mount(<TimeToLeave timeToLeaveInSeconds={seconds} />);
-    expect(component.props().timeToLeaveInSeconds).toEqual(seconds);
+    const component = mount(<TimeToLeave timeToLeaveInSeconds={120} />);
+    expect(component.props().timeToLeaveInSeconds).toEqual(120);
   });
 
   it('has timerExpired callback', () => {
-    expect(timerExpired()).toEqual(<div>RUN!!!</div>);
+    const component = mount(<TimeToLeave timeToLeaveInSeconds={120} />);
+    expect(component.instance().timerExpired()).toEqual(true);
+    // expect(timerExpired()).toEqual(<div>RUN!!!</div>);
   });
 });

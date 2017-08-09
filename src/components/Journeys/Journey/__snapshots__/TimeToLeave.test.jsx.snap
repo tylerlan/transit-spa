@@ -2,6 +2,7 @@
 
 exports[`TimeToLeave should render list item 1`] = `
 <TimeToLeave
+  callRefreshJourneys={[Function]}
   timeToLeaveInSeconds={120}
 >
   <ListItem>
