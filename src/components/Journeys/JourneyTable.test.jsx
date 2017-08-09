@@ -1,13 +1,7 @@
 import React from 'react';
-import { shallow, render, mount } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import {
-  JourneyTable,
-  timeToLeaveConverter,
-  mapStateToProps,
-  mapDispatchToProps,
-} from './JourneyTable';
-import { fetchJourneys } from '../../actions';
+import { JourneyTable, timeToLeaveConverter, mapDispatchToProps } from './JourneyTable';
 
 describe('JourneyTable', () => {
   const testData = {
@@ -58,8 +52,6 @@ describe('JourneyTable', () => {
 
   it('mapDispatchToProps', () => {
     const dispatch = jest.fn();
-    const fetchJourneys = jest.fn();
-    const bindActionCreators = jest.fn();
 
     expect(mapDispatchToProps(dispatch)).toHaveProperty('fetchJourneys');
   });

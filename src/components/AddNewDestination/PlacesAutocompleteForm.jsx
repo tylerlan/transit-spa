@@ -17,6 +17,7 @@ export class PlacesAutocompleteForm extends Component {
   }
 
   reportError = (message) => {
+    /* eslint-disable no-alert */
     alert(message);
     this.setState({ address: '' });
   };
@@ -31,11 +32,9 @@ export class PlacesAutocompleteForm extends Component {
           this.props.onClick();
           return;
         }
-        return this.reportError('no transit options available');
+        this.reportError('no transit options available');
       })
-      .catch((e) => {
-        console.log(e);
-      });
+      .catch(e => e);
   };
 
   render() {
@@ -59,11 +58,13 @@ export class PlacesAutocompleteForm extends Component {
 PlacesAutocompleteForm.propTypes = {
   onClick: PropTypes.func.isRequired,
   addDestination: PropTypes.func.isRequired,
+  origin: PropTypes.string.isRequired,
 };
 
 PlacesAutocompleteForm.defaultProps = {
   onClick: () => {},
   addDestination: () => {},
+  origin: '',
 };
 
 export const mapStateToProps = (state) => {

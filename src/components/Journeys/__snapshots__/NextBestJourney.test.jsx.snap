@@ -2,6 +2,7 @@
 
 exports[`NextBestJourney should render when passed required props 1`] = `
 <NextBestJourney
+  callRefreshJourneys={[Function]}
   conditionStatus="on-time"
   eta="12:00pm"
   steps={
@@ -31,6 +32,7 @@ exports[`NextBestJourney should render when passed required props 1`] = `
           role="list"
         >
           <TimeToLeave
+            callRefreshJourneys={[Function]}
             timeToLeaveInSeconds={500}
           >
             <ListItem>
