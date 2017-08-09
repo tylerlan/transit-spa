@@ -115,6 +115,7 @@ exports[`NextBestJourney should render when passed required props 1`] = `
                           />
                         </Icon>
                         <StepContent
+                          description="to Some Other St. Station"
                           title="Walk"
                         >
                           <div
@@ -129,6 +130,15 @@ exports[`NextBestJourney should render when passed required props 1`] = `
                                 Walk
                               </div>
                             </StepTitle>
+                            <StepDescription
+                              description="to Some Other St. Station"
+                            >
+                              <div
+                                className="description"
+                              >
+                                to Some Other St. Station
+                              </div>
+                            </StepDescription>
                           </div>
                         </StepContent>
                       </div>

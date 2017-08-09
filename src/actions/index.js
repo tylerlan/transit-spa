@@ -50,6 +50,8 @@ export function fetchJourneys(destinationId, origin, destination) {
             instruction: step.html_instructions,
             mode: step.travel_mode,
             duration: step.duration.text,
+            shortName: step.transit_details ? step.transit_details.line.short_name : '',
+            agency: step.transit_details ? step.transit_details.line.agencies[0].name : '',
           };
           return stepObj;
         }),
