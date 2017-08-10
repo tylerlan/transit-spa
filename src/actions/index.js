@@ -1,12 +1,12 @@
 import * as TYPES from '../constants/constants';
 
 export function updateCurrentLocation() {
-  return async (dispatch, getState, { Api }) => {
+  return async (dispatch, getState, { TRANSIT_API }) => {
     dispatch({
       type: TYPES.GEOLOCATING,
     });
 
-    const location = await Api.getCurrentLocation();
+    const location = await TRANSIT_API.getCurrentLocation();
 
     return dispatch({
       type: TYPES.UPDATE_CURRENT_LOCATION,
@@ -45,8 +45,8 @@ export function removeDestination(destinationId) {
 }
 
 export function refreshJourneys(destinationId, origin, destination) {
-  return async (dispatch, getState, { Api }) => {
-    const json = await Api.fetchJourneys(origin, destination);
+  return async (dispatch, getState, { TRANSIT_API }) => {
+    const json = await TRANSIT_API.fetchJourneys(origin, destination);
 
     const journeys = json.map((rawJourneyObj) => {
       const journeyObj = {
@@ -80,8 +80,8 @@ export function refreshJourneys(destinationId, origin, destination) {
 }
 
 export function fetchJourneys(destinationId, origin, destination) {
-  return async (dispatch, getState, { Api }) => {
-    const json = await Api.fetchJourneys(origin, destination);
+  return async (dispatch, getState, { TRANSIT_API }) => {
+    const json = await TRANSIT_API.fetchJourneys(origin, destination);
 
     const journeys = json.map((rawJourneyObj) => {
       const journeyObj = {

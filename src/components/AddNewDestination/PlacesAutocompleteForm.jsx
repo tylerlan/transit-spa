@@ -5,9 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addDestination } from '../../actions';
 
-import Api from '../../utils/Api';
+import TRANSIT_API from '../../utils/Api';
 import injectWidgetId from '../../utils/utils';
-
 
 export class PlacesAutocompleteForm extends Component {
   constructor(props) {
@@ -17,7 +16,7 @@ export class PlacesAutocompleteForm extends Component {
   }
 
   reportError = (message) => {
-   /* eslint-disable no-alert */
+    /* eslint-disable no-alert */
     alert(message);
     this.setState({ address: '' });
   };
@@ -25,16 +24,16 @@ export class PlacesAutocompleteForm extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
 
-    Api.fetchJourneys(this.props.origin, this.state.address)
-     .then((result) => {
-       if (result.length > 1) {
-         this.props.addDestination(this.state.address);
-         this.props.onClick();
-         return;
-       }
-       this.reportError('no transit options available');
-     })
-     .catch(e => e);
+    TRANSIT_API.fetchJourneys(this.props.origin, this.state.address)
+      .then((result) => {
+        if (result.length > 1) {
+          this.props.addDestination(this.state.address);
+          this.props.onClick();
+          return;
+        }
+        this.reportError('no transit options available');
+      })
+      .catch(e => e);
   };
 
   render() {
@@ -47,11 +46,7 @@ export class PlacesAutocompleteForm extends Component {
     return (
       <form className="ui semantic" onSubmit={this.handleFormSubmit}>
         <PlacesAutocomplete inputProps={inputProps} />
-        <button
-          className="ui green button"
-          id="submit-destination"
-          type="submit"
-        >
+        <button className="ui green button" id="submit-destination" type="submit">
           Submit
         </button>
       </form>

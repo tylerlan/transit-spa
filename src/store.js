@@ -3,13 +3,13 @@ import thunkMiddleware from 'redux-thunk';
 // import logger from 'redux-logger';
 
 import rootReducer from './reducers';
-import Api from './utils/Api';
+import TRANSIT_API from './utils/Api';
 
 /* eslint-disable no-underscore-dangle */
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(thunkMiddleware.withExtraArgument({ Api })),
+  applyMiddleware(thunkMiddleware.withExtraArgument({ TRANSIT_API })),
 );
 
 // const store = createStore(

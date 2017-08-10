@@ -8,7 +8,7 @@ import store from './store';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import { WIDGET_ID } from './constants/constants';
-
+import { TRANSIT_API } from './utils/Api';
 /* eslint-disable react/jsx-filename-extension */
 
 ReactDOM.render(
@@ -21,4 +21,4 @@ ReactDOM.render(
 registerServiceWorker();
 
 export default App;
-export { rootReducer };
+export { rootReducer, TRANSIT_API };
