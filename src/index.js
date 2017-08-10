@@ -8,7 +8,7 @@ import store from './store';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import { WIDGET_ID } from './constants/constants';
-import { TRANSIT_API } from './utils/Api';
+import TRANSIT_API from './utils/Api';
 /* eslint-disable react/jsx-filename-extension */
 
 ReactDOM.render(
