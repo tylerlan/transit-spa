@@ -17,7 +17,7 @@ describe('actions', () => {
     );
 
     const extraArgument = {
-      Api: {
+      TRANSIT_API: {
         getCurrentLocation: apiGetCurrentLocation,
       },
     };
@@ -45,11 +45,13 @@ describe('actions', () => {
 
     const expectedActions = [
       { type: TYPES.GEOLOCATING },
-      { type: TYPES.UPDATE_CURRENT_LOCATION,
+      {
+        type: TYPES.UPDATE_CURRENT_LOCATION,
         currentLocation: {
           address: '44 Tehama St, San Francisco, CA 94105',
           lat: 37.7873889,
-          lng: -122.3964106 },
+          lng: -122.3964106,
+        },
       },
     ];
 
@@ -115,7 +117,7 @@ describe('actions', () => {
     expect(actions.removeDestination(destinationId)).toEqual(expectedAction);
   });
 
-  it('should fetch journeys from API', () => {
+  it('should fetch journeys from TRANSIT_API', () => {
     const mockApiFetchJourneys = jest.fn();
     mockApiFetchJourneys.mockReturnValue(
       Promise.resolve([
@@ -139,7 +141,7 @@ describe('actions', () => {
     );
 
     const extraArgument = {
-      Api: {
+      TRANSIT_API: {
         fetchJourneys: mockApiFetchJourneys,
       },
     };
