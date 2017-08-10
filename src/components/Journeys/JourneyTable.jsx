@@ -40,6 +40,8 @@ export class JourneyTable extends Component {
 
     const bestJourney = journeys[0];
     const nextBestJourney = journeys[1];
+    const bestJourneyStatus = bestJourney.alerts ? bestJourney.alerts[0] : 'on-time';
+    const nextBestJourneyStatus = nextBestJourney.alerts ? nextBestJourney.alerts[0] : 'on-time';
 
     const timeToLeaveBest = timeToLeaveConverter(bestJourney.departureTimeUTC);
     const timeToLeaveNextBest = timeToLeaveConverter(nextBestJourney.departureTimeUTC);
@@ -50,14 +52,14 @@ export class JourneyTable extends Component {
           timeToLeaveInSeconds={timeToLeaveBest}
           steps={bestJourney.transitSteps}
           eta={bestJourney.arrivalTimeText}
-          conditionStatus={'on-time'}
+          conditionStatus={bestJourneyStatus}
           callRefreshJourneys={this.callRefreshJourneys}
         />
         <NextBestJourney
           timeToLeaveInSeconds={timeToLeaveNextBest}
           steps={nextBestJourney.transitSteps}
           eta={nextBestJourney.arrivalTimeText}
-          conditionStatus={'future undertain -- see journey table'}
+          conditionStatus={nextBestJourneyStatus}
           callRefreshJourneys={this.callRefreshJourneys}
         />
       </div>
@@ -114,6 +116,7 @@ export const mapStateToProps = (state, ownProps) => {
   const origin = state.widgets.byId[id].configuration.currentLocation.address;
   const destinationsById = state.widgets.byId[id].destinations.byId;
   const destinationId = ownProps.id;
+  const alerts = state.alerts;
   const journeys = state.widgets.byId[id].journeys.byDestinationId[destinationId];
 
   return {
@@ -121,6 +124,7 @@ export const mapStateToProps = (state, ownProps) => {
     journeys,
     destinationId,
     destinationsById,
+    alerts,
   };
 };
 

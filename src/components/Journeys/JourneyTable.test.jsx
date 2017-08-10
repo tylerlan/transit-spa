@@ -35,6 +35,13 @@ describe('JourneyTable', () => {
       },
     ],
     timeToLeaveInSeconds: 1502222223,
+    alerts: {
+      1: {
+        affectedLines: ['18', '52'],
+        description: 'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
+        subject: 'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
+      },
+    },
   };
 
   it('should render Loading...', () => {

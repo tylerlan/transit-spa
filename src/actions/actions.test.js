@@ -132,6 +132,8 @@ describe('actions', () => {
                   html_instructions: 'Walk to Montgomery St. Station',
                   travel_mode: 'WALKING',
                   duration: { text: '8 mins' },
+                  line: 'N/A',
+                  vehicle: 'N/A',
                 },
               ],
             },
@@ -139,14 +141,30 @@ describe('actions', () => {
         },
       ]),
     );
+    const mockApiFetchAlerts = jest.fn();
+    mockApiFetchAlerts.mockReturnValue(
+      Promise.resolve(
+        {
+          1: {
+            affectedLines: ['18', '52'],
+            description: 'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
+            subject: 'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
+          },
+        },
+      ),
+    );
 
     const extraArgument = {
       TRANSIT_API: {
         fetchJourneys: mockApiFetchJourneys,
+        fetchAlerts: mockApiFetchAlerts,
       },
     };
 
     const initialState = {
+      alerts: {
+        alerts: {},
+      },
       configuration: {
         currentLocation: {
           address: '44 Tehama St, San Francisco, CA 94105',
@@ -180,12 +198,25 @@ describe('actions', () => {
                 instruction: 'Walk to Montgomery St. Station',
                 mode: 'WALKING',
                 duration: '8 mins',
+                vehicle: 'N/A',
+                line: 'N/A',
                 shortName: '',
                 agency: '',
               },
             ],
+            alerts: ['on-time'],
           },
         ],
+      },
+      {
+        type: TYPES.ALERTS_RETRIEVED,
+        alerts: {
+          1: {
+            affectedLines: ['18', '52'],
+            description: 'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
+            subject: 'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
+          },
+        },
       },
     ];
 
