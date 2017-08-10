@@ -6,6 +6,8 @@ import { bindActionCreators } from 'redux';
 import { addDestination } from '../../actions';
 
 import Api from '../../utils/Api';
+import injectWidgetId from '../../utils/utils';
+
 
 export class PlacesAutocompleteForm extends Component {
   constructor(props) {
@@ -14,16 +16,16 @@ export class PlacesAutocompleteForm extends Component {
     this.onChange = address => this.setState({ address });
   }
 
- reportError = (message) => {
+  reportError = (message) => {
    /* eslint-disable no-alert */
-   alert(message);
-   this.setState({ address: '' });
- };
+    alert(message);
+    this.setState({ address: '' });
+  };
 
- handleFormSubmit = (event) => {
-   event.preventDefault();
+  handleFormSubmit = (event) => {
+    event.preventDefault();
 
-   Api.fetchJourneys(this.props.origin, this.state.address)
+    Api.fetchJourneys(this.props.origin, this.state.address)
      .then((result) => {
        if (result.length > 1) {
          this.props.addDestination(this.state.address);
@@ -33,9 +35,9 @@ export class PlacesAutocompleteForm extends Component {
        this.reportError('no transit options available');
      })
      .catch(e => e);
- };
+  };
 
- render() {
+  render() {
     const inputProps = {
       value: this.state.address,
       onChange: this.onChange,
@@ -50,7 +52,7 @@ export class PlacesAutocompleteForm extends Component {
           id="submit-destination"
           type="submit"
         >
-					Submit
+          Submit
         </button>
       </form>
     );
@@ -69,8 +71,9 @@ PlacesAutocompleteForm.defaultProps = {
   origin: '',
 };
 
-export const mapStateToProps = (state) => {
-  const origin = state.configuration.currentLocation.address;
+export const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.widgetId;
+  const origin = state.widgets.byId[id].configuration.currentLocation.address;
 
   return {
     origin,
@@ -85,6 +88,4 @@ export const mapDispatchToProps = dispatch =>
     dispatch,
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  PlacesAutocompleteForm,
-);
+export default injectWidgetId(connect(mapStateToProps, mapDispatchToProps)(PlacesAutocompleteForm));

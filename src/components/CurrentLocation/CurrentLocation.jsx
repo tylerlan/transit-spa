@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { updateCurrentLocation } from '../../actions';
+import injectWidgetId from '../../utils/utils';
 
 export class CurrentLocation extends Component {
   componentDidMount() {
@@ -46,9 +47,10 @@ CurrentLocation.defaultProps = {
   updateCurrentLocation: () => {},
 };
 
-export const mapStateToProps = (state) => {
-  const geolocating = state.configuration.geolocating;
-  const currentLocation = state.configuration.currentLocation;
+export const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.widgetId;
+  const geolocating = state.widgets.byId[id].configuration.geolocating;
+  const currentLocation = state.widgets.byId[id].configuration.currentLocation;
 
   return {
     geolocating,
@@ -64,4 +66,4 @@ export const mapDispatchToProps = dispatch =>
     dispatch,
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(CurrentLocation);
+export default injectWidgetId(connect(mapStateToProps, mapDispatchToProps)(CurrentLocation));

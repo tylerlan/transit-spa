@@ -22,7 +22,7 @@ exports[`AddNewDestinationModal should render modal 1`] = `
     icon="compose"
   />
   <ModalActions>
-    <Connect(PlacesAutocompleteForm)
+    <Wrapper
       onClick={[Function]}
     />
   </ModalActions>

@@ -31,13 +31,23 @@ describe('CurrentLocation', () => {
   });
 
   it('mapStateToProps should return geolocating flag and current location', () => {
-    const state = { configuration: {
-      geolocating: true,
-      currentLocation: {
-        address: '44 Tehama St, San Francisco, CA 94105',
-        lat: 37.7873889,
-        lng: -122.3964106 },
-    } };
+    const ownProps = { widgetId: 1 };
+    const state = {
+      widgets: {
+        byId: {
+          1: {
+            configuration: {
+              geolocating: true,
+              currentLocation: {
+                address: '44 Tehama St, San Francisco, CA 94105',
+                lat: 37.7873889,
+                lng: -122.3964106,
+              },
+            },
+          },
+        },
+      },
+    };
 
     const expected = { geolocating: true,
       currentLocation: {
@@ -45,7 +55,7 @@ describe('CurrentLocation', () => {
         lat: 37.7873889,
         lng: -122.3964106 },
     };
-    expect(mapStateToProps(state)).toEqual(expected);
+    expect(mapStateToProps(state, ownProps)).toEqual(expected);
   });
 
   it('mapDispatchToProps should have property updateCurrentLocation', () => {

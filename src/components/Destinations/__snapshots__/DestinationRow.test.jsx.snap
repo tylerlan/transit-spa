@@ -13,7 +13,7 @@ exports[`DestinationRow should render an empty form 1`] = `
     compact={true}
     textAlign="center"
   >
-    <Connect(JourneyTable)
+    <Wrapper
       id={1}
     />
   </Segment>

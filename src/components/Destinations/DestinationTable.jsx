@@ -1,9 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 
 import { Segment } from 'semantic-ui-react';
 import DestinationRow from './DestinationRow';
+import injectWidgetId from '../../utils/utils';
 
 export const DestinationTable = ({ destinationIds, destinationsById }) => {
   if (!destinationIds) return <div>Loading...</div>;
@@ -31,9 +33,10 @@ DestinationTable.defaultProps = {
   destinationsById: { 1: {} },
 };
 
-export const mapStateToProps = (state) => {
-  const destinationIds = state.destinations.ids;
-  const destinationsById = state.destinations.byId;
+export const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.widgetId;
+  const destinationIds = state.widgets.byId[id].destinations.ids;
+  const destinationsById = state.widgets.byId[id].destinations.byId;
 
   return {
     destinationIds,
@@ -41,4 +44,4 @@ export const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(DestinationTable);
+export default injectWidgetId(connect(mapStateToProps, null)(DestinationTable));
