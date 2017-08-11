@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Segment } from 'semantic-ui-react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,13 +16,13 @@ export class CurrentLocation extends Component {
     const { geolocating, currentLocation } = this.props;
 
     return (
-      <Segment>
+      <div id="current-location-text">
         <h1>
-          { geolocating
+          {geolocating
             ? 'Determining your current location...'
-            : `Current Location: ${currentLocation.address}` }
+            : `Current Location: ${currentLocation.address}`}
         </h1>
-      </Segment>
+      </div>
     );
   }
 }
@@ -43,7 +42,8 @@ CurrentLocation.defaultProps = {
   currentLocation: {
     address: 'Tehama St, San Francisco, CA 94105',
     lat: 37.7873889,
-    lng: -122.3964106 },
+    lng: -122.3964106,
+  },
   updateCurrentLocation: () => {},
 };
 

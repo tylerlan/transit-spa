@@ -16,20 +16,18 @@ class App extends Component {
   render() {
     return (
       <div className="transit-container">
-        <Container className="transit-container">
-          <Grid className="transit-container" padded centered>
-            <Grid.Column className="transit-container">
-              <Grid.Row id="current-location-container">
-                <CurrentLocation />
-              </Grid.Row>
-              <Grid.Row id="destinations-container">
+        <Segment id="current-location-container">
+          <CurrentLocation />
+        </Segment>
+
+        <Container className="new-transit-container">
+          <Grid className="destination-container" padded centered>
+            <Grid.Column className="destination-container">
+              <Grid.Row id="current-destinations-container">
                 <DestinationTable />
               </Grid.Row>
-              <Grid.Row
-                className="transit-container"
-                id="new-destinations-container"
-              >
-                <Segment className="transit-container" textAlign="center">
+              <Grid.Row className="destination-container" id="new-destinations-container">
+                <Segment className="destination-container" textAlign="center">
                   <AddNewDestinationRow />
                 </Segment>
               </Grid.Row>
