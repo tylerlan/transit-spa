@@ -3,7 +3,7 @@
 exports[`DestinationRow should render an empty form 1`] = `
 <Container>
   <Segment
-    class="destination-row"
+    className="destination-row"
     compact={true}
   >
     <DestinationHeader
@@ -11,7 +11,7 @@ exports[`DestinationRow should render an empty form 1`] = `
     />
   </Segment>
   <Segment
-    class="destination-row"
+    className="destination-row"
     compact={true}
     textAlign="center"
   >

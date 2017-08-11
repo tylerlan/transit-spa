@@ -9,10 +9,10 @@ import './destination.css';
 
 export const DestinationRow = ({ id, name }) =>
   (<Container>
-    <Segment compact class="destination-row">
+    <Segment compact className="destination-row">
       <DestinationHeader name={name} />
     </Segment>
-    <Segment compact textAlign="center" class="destination-row">
+    <Segment compact textAlign="center" className="destination-row">
       <JourneyTable id={id} />
     </Segment>
   </Container>);
