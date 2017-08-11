@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-
 import { Segment } from 'semantic-ui-react';
 import DestinationRow from './DestinationRow';
 import injectWidgetId from '../../utils/utils';

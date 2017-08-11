@@ -1,17 +1,45 @@
 .App {
-	text-align: center;
+  text-align: center;
 }
 .transit-container {
-	height: inherit;
-	padding: 0 !important;
+  text-align: center;
+  height: inherit !important;
+  width: inherit !important;
+  padding: 0 !important;
+}
+#current-location-container {
+  height: 30% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: inherit !important;
+}
+#current-location-text {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 !important;
+}
+.new-transit-container {
+  height: 70% !important;
+  width: inherit !important;
+  padding: 0 !important;
+}
+.destination-container {
+  height: 100% !important;
+  width: inherit !important;
+  padding: 0 !important;
 }
 #button-div {
-	height: inherit !important;
+  height: inherit !important;
 }
 
 .transit-button {
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
-	margin: 0 !important;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 !important;
+}
+
+.react-grid-item {
+  margin: .25%;
 }

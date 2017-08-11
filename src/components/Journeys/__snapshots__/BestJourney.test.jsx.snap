@@ -21,12 +21,11 @@ exports[`BestJourney should render when passed required props 1`] = `
       className="ui segment"
     >
       <List
-        divided={true}
         horizontal={true}
         size="huge"
       >
         <div
-          className="ui huge divided horizontal list"
+          className="ui huge horizontal list"
           role="list"
         >
           <TimeToLeave
