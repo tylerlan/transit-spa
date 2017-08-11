@@ -10,7 +10,7 @@ import CurrentConditionsStatus from './Journey/CurrentConditionsStatus';
 
 const BestJourney = ({ timeToLeaveInSeconds, steps, eta, conditionStatus, callRefreshJourneys }) =>
   (<Segment>
-    <List divided horizontal size="huge">
+    <List horizontal size="huge">
       <TimeToLeave
         timeToLeaveInSeconds={timeToLeaveInSeconds}
         callRefreshJourneys={callRefreshJourneys}

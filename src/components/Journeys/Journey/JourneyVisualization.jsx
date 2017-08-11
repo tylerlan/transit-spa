@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { Icon, List, Step } from 'semantic-ui-react';
 
+import './journey-visualization.css';
+
 function formatAgency(step) {
   let output = '';
   if (step.mode.includes('WALKING')) {

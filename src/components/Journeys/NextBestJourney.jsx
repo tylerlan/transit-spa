@@ -16,7 +16,7 @@ const NextBestJourney = ({
   callRefreshJourneys,
 }) =>
   (<Segment tertiary>
-    <List divided horizontal size="huge">
+    <List horizontal size="huge">
       <TimeToLeave
         timeToLeaveInSeconds={timeToLeaveInSeconds}
         callRefreshJourneys={callRefreshJourneys}
