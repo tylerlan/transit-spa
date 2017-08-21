@@ -9,6 +9,9 @@ exports[`DestinationRow should render an empty form 1`] = `
     <DestinationHeader
       name=""
     />
+    <Connect(RemoveDestinationButton)
+      id={1}
+    />
   </Segment>
   <Segment
     className="destination-row"
