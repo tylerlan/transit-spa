@@ -1,3 +1,4 @@
+const googleMapsKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 const apiUrl = process.env.REACT_APP_API_SERVER_URL;
 
 export default class TRANSIT_API {
@@ -19,7 +20,7 @@ export default class TRANSIT_API {
       const lat = position.coords.latitude;
       const lng = position.coords.longitude;
       const location = { lat, lng };
-      const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${lat},${lng}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
+      const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${lat},${lng}&key=${googleMapsKey}`;
       return fetch(url)
       .then(response => response.json())
       .then((data) => {
