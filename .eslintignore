@@ -1,1 +1,5 @@
 coverage/
+# Ignoring the libs and build directories prevents the linter hanging during the build steps
+
+/build/**
+/libs/**

@@ -1,0 +1,5 @@
+transit-spa:
+  build:
+    dockerfile: Dockerfile
+  environment:
+    - CI=true

@@ -1,0 +1,6 @@
+- service: transit-spa
+  command: npm run lint
+- service: transit-spa
+  command: npm run test
+- service: transit-spa
+  command: npm run create-module
