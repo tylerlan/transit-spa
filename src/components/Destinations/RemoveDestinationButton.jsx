@@ -13,7 +13,9 @@ export class RemoveDestinationButton extends Component {
 
   render() {
     return (
-      <Button icon="window close" size="mini" floated="right" onClick={this.buttonWasClicked} />
+      <Button basic floated="right" onClick={this.buttonWasClicked}>
+        X
+      </Button>
     );
   }
 }
