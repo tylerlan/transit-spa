@@ -8,15 +8,17 @@ import DestinationHeader from './Destination/DestinationHeader';
 import RemoveDestinationButton from './RemoveDestinationButton';
 import './destination.css';
 
-export const DestinationRow = ({ id, name }) =>
-  (<Container>
+export const DestinationRow = ({ id, name }) => (
+  <Container>
+    <RemoveDestinationButton id={id} />
     <Segment compact className="destination-row">
-      <DestinationHeader name={name} /><RemoveDestinationButton id={id} />
+      <DestinationHeader name={name} />
     </Segment>
     <Segment compact textAlign="center" className="destination-row">
       <JourneyTable id={id} />
     </Segment>
-  </Container>);
+  </Container>
+);
 
 DestinationRow.propTypes = {
   id: PropTypes.number.isRequired,
