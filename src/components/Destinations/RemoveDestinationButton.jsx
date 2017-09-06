@@ -6,20 +6,14 @@ import { connect } from 'react-redux';
 import { removeDestination } from '../../actions';
 
 export class RemoveDestinationButton extends React.Component {
-
   buttonWasClicked = (e) => {
     e.preventDefault();
     this.props.removeDestination(this.props.id);
-  }
+  };
 
   render() {
     return (
-      <Button
-        icon="window close"
-        size="mini"
-        float="right"
-        onClick={this.buttonWasClicked}
-      />
+      <Button icon="window close" size="mini" floated="right" onClick={this.buttonWasClicked} />
     );
   }
 }
@@ -33,11 +27,12 @@ RemoveDestinationButton.defaultProps = {
   removeDestination: () => {},
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  removeDestination,
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      removeDestination,
+    },
+    dispatch,
+  );
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(RemoveDestinationButton);
+export default connect(null, mapDispatchToProps)(RemoveDestinationButton);
