@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Grid, Container, Segment } from 'semantic-ui-react';
+import { Grid, Container, Segment, Menu } from 'semantic-ui-react';
+
 import CurrentLocation from './components/CurrentLocation/CurrentLocation';
 import DestinationTable from './components/Destinations/DestinationTable';
-import AddNewDestinationRow from './components/AddNewDestination/AddNewDestinationRow';
+import AddNewDestinationModal from './components/AddNewDestination/AddNewDestinationModal';
 import './App.css';
 import { WIDGET_ID } from './constants/constants';
 
@@ -16,24 +17,30 @@ class App extends Component {
   render() {
     return (
       <div className="transit-container">
-        <Segment id="current-location-container">
-          <CurrentLocation />
-        </Segment>
+        <Menu attached="top">
+          <AddNewDestinationModal>New destination</AddNewDestinationModal>
+          <Menu.Menu position="right">
+            <div
+              className="ui right aligned category search item"
+              style={{ alignItems: 'baseline' }}
+            >
+              <CurrentLocation />
+              <div className="results" />
+            </div>
+          </Menu.Menu>
+        </Menu>
 
-        <Container className="new-transit-container">
-          <Grid className="destination-container" padded centered>
-            <Grid.Column className="destination-container">
-              <Grid.Row id="current-destinations-container">
-                <DestinationTable />
-              </Grid.Row>
-              <Grid.Row className="destination-container" id="new-destinations-container">
-                <Segment className="destination-container" textAlign="center">
-                  <AddNewDestinationRow />
-                </Segment>
-              </Grid.Row>
-            </Grid.Column>
-          </Grid>
-        </Container>
+        <Segment attached="bottom">
+          <Container className="new-transit-container">
+            <Grid className="destination-container" padded centered>
+              <Grid.Column className="destination-container">
+                <Grid.Row>
+                  <DestinationTable />
+                </Grid.Row>
+              </Grid.Column>
+            </Grid>
+          </Container>
+        </Segment>
       </div>
     );
   }

@@ -3,6 +3,11 @@
 exports[`AddNewDestinationButton should render button 1`] = `
 <div
   id="button-div"
+  style={
+    Object {
+      "marginLeft": "0.5rem",
+    }
+  }
 >
   <Button
     as="button"
@@ -11,7 +16,7 @@ exports[`AddNewDestinationButton should render button 1`] = `
     color="blue"
     icon="plus"
     onClick={[Function]}
-    size="massive"
+    size="large"
   />
 </div>
 `;

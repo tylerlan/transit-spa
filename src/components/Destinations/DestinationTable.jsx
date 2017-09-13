@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Segment } from 'semantic-ui-react';
 import DestinationRow from './DestinationRow';
 import injectWidgetId from '../../utils/utils';
 
@@ -11,11 +10,15 @@ export const DestinationTable = ({ destinationIds, destinationsById }) => {
 
   return (
     <div>
-      {destinationIds.map(id =>
-        (<Segment key={id}>
-          <DestinationRow id={id} name={destinationsById[id].address} />
-        </Segment>),
-      )}
+      {destinationIds.map(id => (
+        <DestinationRow
+          key={id}
+          id={id}
+          name={destinationsById[id].address}
+          style={{ margin: '1rem 0rem' }}
+          className="destination-row"
+        />
+      ))}
     </div>
   );
 };

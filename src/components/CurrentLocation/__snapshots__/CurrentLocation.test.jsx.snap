@@ -4,10 +4,17 @@ exports[`CurrentLocation should render Current Location: YOUR_ADDRESS when geolo
 <div
   id="current-location-text"
 >
-  <h1>
-    Current Location: 1234 Main St
-  </h1>
-   
+  <div>
+    <p>
+      <Icon
+        as="i"
+        color="green"
+        name="location arrow"
+        size="small"
+      />
+      1234 Main St
+    </p>
+  </div>
 </div>
 `;
 
@@ -15,18 +22,18 @@ exports[`CurrentLocation should render Determining your current location... 1`] 
 <div
   id="current-location-text"
 >
-  <h1>
-    <div>
-      <span>
-        Determining your current location... 
-      </span>
-      <Loader
-        active={true}
-        indeterminate={true}
-        inline={true}
-      />
-    </div>
-  </h1>
-   
+  <div>
+    <Icon
+      as="i"
+      color="grey"
+      name="location arrow"
+      size="small"
+    />
+    <Loader
+      active={true}
+      indeterminate={true}
+      inline={true}
+    />
+  </div>
 </div>
 `;

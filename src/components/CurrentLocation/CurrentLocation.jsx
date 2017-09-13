@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Loader } from 'semantic-ui-react';
+import { Loader, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -18,14 +18,19 @@ export class CurrentLocation extends Component {
 
     return (
       <div id="current-location-text">
-        <h1>
-          {geolocating
-            ? <div>
-              <span>Determining your current location... </span>
-              <Loader active inline indeterminate />
-            </div>
-            : `Current Location: ${currentLocation.address}`}
-        </h1>{' '}
+        {geolocating ? (
+          <div>
+            <Icon name="location arrow" color="grey" size="small" />
+            <Loader active inline indeterminate />
+          </div>
+        ) : (
+          <div>
+            <p>
+              <Icon name="location arrow" color="green" size="small" />
+              {currentLocation.address}
+            </p>
+          </div>
+        )}
       </div>
     );
   }

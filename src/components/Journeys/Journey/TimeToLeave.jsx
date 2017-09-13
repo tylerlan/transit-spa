@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Icon, List } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
 import Timer from './Timer';
+
+const headerStyle = {
+  marginTop: '0rem',
+  marginBottom: '0rem',
+};
 
 class TimeToLeave extends Component {
   constructor(props) {
@@ -17,13 +22,9 @@ class TimeToLeave extends Component {
 
   render() {
     return (
-      <List.Item>
-        <Icon name="hourglass half" size="large" />
-        <List.Content>
-          <List.Header>leave in</List.Header>
-          <Timer seconds={this.props.timeToLeaveInSeconds} onComplete={this.timerExpired} />
-        </List.Content>
-      </List.Item>
+      <Header as="h1" color="grey" style={headerStyle}>
+        <Timer seconds={this.props.timeToLeaveInSeconds} onComplete={this.timerExpired} />
+      </Header>
     );
   }
 }

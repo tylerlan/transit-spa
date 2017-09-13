@@ -41,5 +41,10 @@
 }
 
 .react-grid-item {
-  margin: .25%;
+  margin: 0.25%;
+}
+
+.journeyVizColumn {
+  overflow-x: scroll;
+  overflow-y: visible;
 }

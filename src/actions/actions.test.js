@@ -143,15 +143,15 @@ describe('actions', () => {
     );
     const mockApiFetchAlerts = jest.fn();
     mockApiFetchAlerts.mockReturnValue(
-      Promise.resolve(
-        {
-          1: {
-            affectedLines: ['18', '52'],
-            description: 'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
-            subject: 'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
-          },
+      Promise.resolve({
+        1: {
+          affectedLines: ['18', '52'],
+          description:
+            'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
+          subject:
+            'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
         },
-      ),
+      }),
     );
 
     const extraArgument = {
@@ -195,13 +195,17 @@ describe('actions', () => {
             departureTimeUTC: 1501871210,
             transitSteps: [
               {
-                instruction: 'Walk to Montgomery St. Station',
-                mode: 'WALKING',
-                duration: '8 mins',
-                vehicle: 'N/A',
-                line: 'N/A',
-                shortName: '',
                 agency: '',
+                duration: '8 mins',
+                headsign: '',
+                icon: 'N/A',
+                instruction: 'Walk to Montgomery St. Station',
+                line: 'N/A',
+                localIcon: 'N/A',
+                longName: '',
+                mode: 'WALKING',
+                shortName: '',
+                vehicle: 'N/A',
               },
             ],
             alerts: ['on-time'],
@@ -213,8 +217,10 @@ describe('actions', () => {
         alerts: {
           1: {
             affectedLines: ['18', '52'],
-            description: 'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
-            subject: 'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
+            description:
+              'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
+            subject:
+              'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
           },
         },
       },

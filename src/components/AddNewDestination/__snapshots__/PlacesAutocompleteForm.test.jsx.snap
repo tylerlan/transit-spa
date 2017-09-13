@@ -5,25 +5,33 @@ exports[`PlacesAutocompleteForm should render an empty form 1`] = `
   className="ui semantic"
   onSubmit={[Function]}
 >
-  <PlacesAutocomplete
-    autocompleteItem={[Function]}
-    classNames={Object {}}
-    clearItemsOnError={false}
-    debounce={200}
-    googleLogo={true}
-    googleLogoType="default"
-    highlightFirstSuggestion={false}
-    inputProps={
+  <div
+    style={
       Object {
-        "onChange": [Function],
-        "placeholder": "Choose a new destination",
-        "value": "600 Guerrero St, San Francisco, CA 94110",
+        "paddingBottom": "10px",
       }
     }
-    onError={[Function]}
-    options={Object {}}
-    styles={Object {}}
-  />
+  >
+    <PlacesAutocomplete
+      autocompleteItem={[Function]}
+      classNames={Object {}}
+      clearItemsOnError={false}
+      debounce={200}
+      googleLogo={true}
+      googleLogoType="default"
+      highlightFirstSuggestion={false}
+      inputProps={
+        Object {
+          "onChange": [Function],
+          "placeholder": "Choose a new destination",
+          "value": "600 Guerrero St, San Francisco, CA 94110",
+        }
+      }
+      onError={[Function]}
+      options={Object {}}
+      styles={Object {}}
+    />
+  </div>
   <button
     className="ui green button"
     id="submit-destination"

@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import BestJourney from './BestJourney';
+import JourneyRow from './JourneyRow';
 
-describe('BestJourney', () => {
+describe('JourneyRow', () => {
   it('should render when passed required props', () => {
     const timeToLeaveInSeconds = 120;
     const steps = [
@@ -13,11 +13,12 @@ describe('BestJourney', () => {
     const conditionStatus = 'on-time';
 
     const component = mount(
-      <BestJourney
+      <JourneyRow
         timeToLeaveInSeconds={timeToLeaveInSeconds}
         steps={steps}
         eta={eta}
         conditionStatus={conditionStatus}
+        callRefreshJourneys={() => {}}
       />,
     );
     expect(toJson(component)).toMatchSnapshot();
