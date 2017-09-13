@@ -177,7 +177,18 @@ export function fetchJourneys(destinationId, origin, destination) {
       });
       return journeyObj;
     });
-    dispatch(addJourneys(destinationId, journeys));
+
+    const journeysOffset = journeys
+      .filter((journey) => {
+        const currentTimeInSeconds = Date.now() / 1000;
+        const diff = journey.departureTimeUTC - currentTimeInSeconds;
+        const offset = 1.5;
+        return diff >= offset;
+      })
+      .sort((a, b) => a - b);
+
+    dispatch(removeJourneys(destinationId));
+    dispatch(addJourneys(destinationId, journeysOffset));
     dispatch({
       type: TYPES.ALERTS_RETRIEVED,
       alerts,
