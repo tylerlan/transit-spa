@@ -1,27 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { List, Segment } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
 
 import TimeToLeave from './Journey/TimeToLeave';
 import JourneyVisualization from './Journey/JourneyVisualization';
 import ArriveByEstimate from './Journey/ArriveByEstimate';
 import CurrentConditionsStatus from './Journey/CurrentConditionsStatus';
 
-const BestJourney = ({ timeToLeaveInSeconds, steps, eta, conditionStatus, callRefreshJourneys }) =>
-  (<Segment>
-    <List horizontal size="huge">
+import '../../App.css';
+
+const headerStyle = {
+  marginTop: '0px',
+  marginBottom: '0px',
+};
+
+const journeyRowStyle = {
+  alignItems: 'center',
+  display: 'flex',
+  padding: '0.5rem',
+  clear: 'both',
+  margin: 'auto',
+};
+
+const minStyle = {
+  padding: 'inherit',
+  minWidth: '80px',
+};
+
+const JourneyRow = ({ timeToLeaveInSeconds, steps, eta, conditionStatus, callRefreshJourneys }) => (
+  <div className="journey-row" style={journeyRowStyle}>
+    <div style={minStyle}>
+      <p style={headerStyle}>leave in</p>
       <TimeToLeave
         timeToLeaveInSeconds={timeToLeaveInSeconds}
         callRefreshJourneys={callRefreshJourneys}
       />
-      <JourneyVisualization active={false} steps={steps} />
+    </div>
+
+    <div style={minStyle}>
+      <JourneyVisualization steps={steps} />
+    </div>
+    <div style={minStyle}>
+      <Header as="h4" style={headerStyle}>
+        arrive by
+      </Header>
       <ArriveByEstimate eta={eta} />
       <CurrentConditionsStatus conditionStatus={conditionStatus} />
-    </List>
-  </Segment>);
+    </div>
+  </div>
+);
 
-BestJourney.propTypes = {
+JourneyRow.propTypes = {
   timeToLeaveInSeconds: PropTypes.number.isRequired,
   steps: PropTypes.arrayOf(PropTypes.object).isRequired,
   eta: PropTypes.string.isRequired,
@@ -29,7 +59,7 @@ BestJourney.propTypes = {
   callRefreshJourneys: PropTypes.func.isRequired,
 };
 
-BestJourney.defaultProps = {
+JourneyRow.defaultProps = {
   timeToLeaveInSeconds: 1,
   steps: [{}],
   eta: '',
@@ -37,4 +67,4 @@ BestJourney.defaultProps = {
   callRefreshJourneys: () => {},
 };
 
-export default BestJourney;
+export default JourneyRow;

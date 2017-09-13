@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchJourneys, refreshJourneys } from '../../actions';
 
-import BestJourney from './BestJourney';
-import NextBestJourney from './NextBestJourney';
+import JourneyRow from './JourneyRow';
 
 import injectWidgetId from '../../utils/utils';
 
@@ -47,15 +46,15 @@ export class JourneyTable extends Component {
     const timeToLeaveNextBest = timeToLeaveConverter(nextBestJourney.departureTimeUTC);
 
     return (
-      <div>
-        <BestJourney
+      <div className="journey-table">
+        <JourneyRow
           timeToLeaveInSeconds={timeToLeaveBest}
           steps={bestJourney.transitSteps}
           eta={bestJourney.arrivalTimeText}
           conditionStatus={bestJourneyStatus}
           callRefreshJourneys={this.callRefreshJourneys}
         />
-        <NextBestJourney
+        <JourneyRow
           timeToLeaveInSeconds={timeToLeaveNextBest}
           steps={nextBestJourney.transitSteps}
           eta={nextBestJourney.arrivalTimeText}
