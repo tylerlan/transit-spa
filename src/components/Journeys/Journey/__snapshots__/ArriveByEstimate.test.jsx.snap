@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArriveByEstimate renders when given an eta 1`] = `
+<Header
+  as="h4"
+  style={
+    Object {
+      "marginBottom": "0rem",
+      "marginTop": "0rem",
+    }
+  }
+>
+  12:34pm
+</Header>
+`;
