@@ -2,12 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Header } from 'semantic-ui-react';
+
 import '../destination.css';
 
-const DestinationHeader = ({ name }) =>
-  (<Header as="h2" className="destination-header">
+const DestinationHeader = ({ name }) => (
+  <Header as="h3" className="destination-header">
     {name}
-  </Header>);
+  </Header>
+);
+
+export default DestinationHeader;
 
 DestinationHeader.propTypes = {
   name: PropTypes.string.isRequired,
@@ -16,5 +20,3 @@ DestinationHeader.propTypes = {
 DestinationHeader.defaultProps = {
   name: '',
 };
-
-export default DestinationHeader;

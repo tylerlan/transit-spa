@@ -13,9 +13,14 @@ export class RemoveDestinationButton extends Component {
 
   render() {
     return (
-      <Button basic floated="right" onClick={this.buttonWasClicked}>
-        X
-      </Button>
+      <Button
+        circular
+        size="small"
+        color="red"
+        icon="delete"
+        floated="right"
+        onClick={this.buttonWasClicked}
+      />
     );
   }
 }
