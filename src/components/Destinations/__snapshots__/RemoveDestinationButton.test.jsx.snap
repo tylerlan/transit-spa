@@ -3,9 +3,11 @@
 exports[`RemoveDestinationButton should render a remove button 1`] = `
 <Button
   as="button"
-  float="right"
-  icon="window close"
+  circular={true}
+  color="red"
+  floated="right"
+  icon="delete"
   onClick={[Function]}
-  size="mini"
+  size="small"
 />
 `;

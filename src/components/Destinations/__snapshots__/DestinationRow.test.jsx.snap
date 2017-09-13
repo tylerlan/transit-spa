@@ -1,20 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DestinationRow should render an empty form 1`] = `
-<Container>
+<div>
+  <Connect(RemoveDestinationButton)
+    id={1}
+  />
   <Segment
-    className="destination-row"
     compact={true}
   >
     <DestinationHeader
       name=""
     />
-    <Connect(RemoveDestinationButton)
-      id={1}
-    />
   </Segment>
   <Segment
-    className="destination-row"
     compact={true}
     textAlign="center"
   >
@@ -22,5 +20,5 @@ exports[`DestinationRow should render an empty form 1`] = `
       id={1}
     />
   </Segment>
-</Container>
+</div>
 `;
