@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Container, Segment, Menu, Button } from 'semantic-ui-react';
+import { Grid, Container, Segment, Menu } from 'semantic-ui-react';
 
 import CurrentLocation from './components/CurrentLocation/CurrentLocation';
 import DestinationTable from './components/Destinations/DestinationTable';
