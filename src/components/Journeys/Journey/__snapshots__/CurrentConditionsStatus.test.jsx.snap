@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrentConditionsStatus renders when given a delayed status 1`] = `
+<Popup
+  content="delayed for some time due to reasons"
+  inverted={true}
+  offset={50}
+  on="hover"
+  position="right center"
+  style={
+    Object {
+      "borderRadius": 0,
+      "opacity": 0.7,
+      "padding": "2em",
+    }
+  }
+  trigger={
+    <Label
+      color="red"
+      style={
+        Object {
+          "marginBottom": "0rem",
+          "marginTop": "0.5rem",
+        }
+      }
+    >
+      delayed
+    </Label>
+  }
+/>
+`;
+
+exports[`CurrentConditionsStatus renders when given an on-time status 1`] = `
+<Popup
+  content="on-time"
+  inverted={true}
+  offset={50}
+  on="hover"
+  position="right center"
+  style={
+    Object {
+      "borderRadius": 0,
+      "opacity": 0.7,
+      "padding": "2em",
+    }
+  }
+  trigger={
+    <Label
+      color="green"
+      style={
+        Object {
+          "marginBottom": "0rem",
+          "marginTop": "0.5rem",
+        }
+      }
+    >
+      on-time
+    </Label>
+  }
+/>
+`;
