@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Container, Segment, Menu, Dropdown, Button } from 'semantic-ui-react';
+import { Grid, Container, Segment, Menu, Button } from 'semantic-ui-react';
 
 import CurrentLocation from './components/CurrentLocation/CurrentLocation';
 import DestinationTable from './components/Destinations/DestinationTable';
@@ -19,13 +19,6 @@ class App extends Component {
       <div className="transit-container">
         <Menu attached="top">
           <AddNewDestinationModal>New destination</AddNewDestinationModal>
-
-          {/* <Dropdown item icon="wrench" simple>
-            <Dropdown.Menu>
-              <Button className="text">Change Stuff</Button>
-            </Dropdown.Menu>
-          </Dropdown> */}
-
           <Menu.Menu position="right">
             <div
               className="ui right aligned category search item"
