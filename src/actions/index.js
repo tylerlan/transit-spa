@@ -44,16 +44,6 @@ export function removeDestination(destinationId) {
   };
 }
 
-export function refreshJourneys(destinationId, origin, destination) {
-  return async (dispatch, getState, { TRANSIT_API, HELPERS }) => {
-    const journeys = await TRANSIT_API.fetchJourneys(origin, destination);
-    const journeysOffset = await HELPERS.offsetJourneys(journeys);
-
-    dispatch(removeJourneys(destinationId));
-    dispatch(addJourneys(destinationId, journeysOffset));
-  };
-}
-
 export function fetchJourneys(destinationId, origin, destination) {
   return async (dispatch, getState, { TRANSIT_API, HELPERS }) => {
     const journeys = await TRANSIT_API.fetchJourneys(origin, destination);
@@ -62,7 +52,14 @@ export function fetchJourneys(destinationId, origin, destination) {
     const journeysWithAlerts = await HELPERS.applyAlerts(journeys, alerts);
     const journeysOffset = await HELPERS.offsetJourneys(journeysWithAlerts);
 
-    dispatch(removeJourneys(destinationId));
+    const currentJourneysForDestination = getState().widgets.byId.transit.journeys.byDestinationId[
+      destinationId
+    ];
+
+    if (currentJourneysForDestination) {
+      dispatch(removeJourneys(destinationId));
+    }
+
     dispatch(addJourneys(destinationId, journeysOffset));
     dispatch({
       type: TYPES.ALERTS_RETRIEVED,
