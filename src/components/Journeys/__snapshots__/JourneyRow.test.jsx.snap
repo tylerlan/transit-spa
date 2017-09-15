@@ -2,6 +2,7 @@
 
 exports[`JourneyRow should render when passed required props 1`] = `
 <JourneyRow
+  callRefreshJourneys={[Function]}
   conditionStatus="on-time"
   eta="11:00am"
   refreshJourneys={[Function]}
@@ -47,6 +48,7 @@ exports[`JourneyRow should render when passed required props 1`] = `
         leave in
       </p>
       <TimeToLeave
+        callRefreshJourneys={[Function]}
         refreshJourneys={[Function]}
         timeToLeaveInSeconds={120}
       >

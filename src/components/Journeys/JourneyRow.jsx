@@ -28,11 +28,14 @@ const minStyle = {
   minWidth: '80px',
 };
 
-const JourneyRow = ({ timeToLeaveInSeconds, steps, eta, conditionStatus, refreshJourneys }) => (
+const JourneyRow = ({ timeToLeaveInSeconds, steps, eta, conditionStatus, callRefreshJourneys }) => (
   <div className="journey-row" style={journeyRowStyle}>
     <div style={minStyle}>
       <p style={headerStyle}>leave in</p>
-      <TimeToLeave timeToLeaveInSeconds={timeToLeaveInSeconds} refreshJourneys={refreshJourneys} />
+      <TimeToLeave
+        timeToLeaveInSeconds={timeToLeaveInSeconds}
+        callRefreshJourneys={callRefreshJourneys}
+      />
     </div>
 
     <div style={minStyle}>
@@ -53,7 +56,7 @@ JourneyRow.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.object).isRequired,
   eta: PropTypes.string.isRequired,
   conditionStatus: PropTypes.string.isRequired,
-  refreshJourneys: PropTypes.func.isRequired,
+  callRefreshJourneys: PropTypes.func.isRequired,
 };
 
 JourneyRow.defaultProps = {
@@ -61,7 +64,7 @@ JourneyRow.defaultProps = {
   steps: [{}],
   eta: '',
   conditionStatus: 'on-time',
-  refreshJourneys: () => {},
+  callRefreshJourneys: () => {},
 };
 
 export default JourneyRow;
