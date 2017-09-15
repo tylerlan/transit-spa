@@ -1,5 +1,3 @@
-import HELPERS from './helpers';
-
 const googleMapsKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 const apiUrl = process.env.REACT_APP_API_SERVER_URL;
 
@@ -9,9 +7,7 @@ export default class TRANSIT_API {
       `${apiUrl}/directions?origin=${origin}&destination=${destination}&alternatives=true`,
     )
       .then(response => response.json())
-      .catch((e) => {
-        console.dir('ERROR IN FETCH JOURNEYS', e);
-      });
+      .catch(e => e);
   }
 
   static getCurrentLocation() {
@@ -38,8 +34,6 @@ export default class TRANSIT_API {
   static fetchAlerts() {
     return fetch(`${apiUrl}/alerts`)
       .then(response => response.json())
-      .catch((e) => {
-        console.log('ERROR IN FETCH ALERTS', e);
-      });
+      .catch(e => e);
   }
 }

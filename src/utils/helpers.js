@@ -45,7 +45,8 @@ export default class HELPERS {
   }
 
   static applyAlerts(arrayOfJouneyObjects, alerts) {
-    arrayOfJouneyObjects.forEach((journey) => {
+    arrayOfJouneyObjects.forEach((journeyObject) => {
+      const journey = journeyObject;
       journey.alerts = [];
       if (!alerts) {
         // if there are no no alerts, say it's on-time

@@ -46,7 +46,7 @@ export function removeDestination(destinationId) {
 
 export function fetchJourneys(destinationId, origin, destination) {
   return async (dispatch, getState, { TRANSIT_API, HELPERS }) => {
-    // NOTE: json returns more than the legs of the journey; it includes fare{}, bounds{}, and polyline{}
+    // NOTE: json also includes fare{}, bounds{}, and polyline{}--not being used
     const json = await TRANSIT_API.fetchJourneys(origin, destination);
     const alerts = await TRANSIT_API.fetchAlerts();
 
