@@ -28,16 +28,11 @@ const minStyle = {
   minWidth: '80px',
 };
 
-// NOTE: This callRefreshJourneys really be called callFetchJourneysAgain, or something
-
-const JourneyRow = ({ timeToLeaveInSeconds, steps, eta, conditionStatus, callRefreshJourneys }) => (
+const JourneyRow = ({ timeToLeaveInSeconds, steps, eta, conditionStatus, refreshJourneys }) => (
   <div className="journey-row" style={journeyRowStyle}>
     <div style={minStyle}>
       <p style={headerStyle}>leave in</p>
-      <TimeToLeave
-        timeToLeaveInSeconds={timeToLeaveInSeconds}
-        callRefreshJourneys={callRefreshJourneys}
-      />
+      <TimeToLeave timeToLeaveInSeconds={timeToLeaveInSeconds} refreshJourneys={refreshJourneys} />
     </div>
 
     <div style={minStyle}>
@@ -58,7 +53,7 @@ JourneyRow.propTypes = {
   steps: PropTypes.arrayOf(PropTypes.object).isRequired,
   eta: PropTypes.string.isRequired,
   conditionStatus: PropTypes.string.isRequired,
-  callRefreshJourneys: PropTypes.func.isRequired,
+  refreshJourneys: PropTypes.func.isRequired,
 };
 
 JourneyRow.defaultProps = {
@@ -66,7 +61,7 @@ JourneyRow.defaultProps = {
   steps: [{}],
   eta: '',
   conditionStatus: 'on-time',
-  callRefreshJourneys: () => {},
+  refreshJourneys: () => {},
 };
 
 export default JourneyRow;

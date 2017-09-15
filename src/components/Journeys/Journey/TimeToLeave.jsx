@@ -17,9 +17,7 @@ class TimeToLeave extends Component {
   }
 
   timerExpired() {
-    // NOTE: This callRefreshJourneys really be called callFetchJourneysAgain, or something
-
-    this.props.callRefreshJourneys();
+    this.props.refreshJourneys();
   }
 
   render() {
@@ -33,12 +31,12 @@ class TimeToLeave extends Component {
 
 TimeToLeave.propTypes = {
   timeToLeaveInSeconds: PropTypes.number.isRequired,
-  callRefreshJourneys: PropTypes.func.isRequired,
+  refreshJourneys: PropTypes.func.isRequired,
 };
 
 TimeToLeave.defaultProps = {
   timeToLeaveInSeconds: 5,
-  callRefreshJourneys: () => {},
+  refreshJourneys: () => {},
 };
 
 export default TimeToLeave;

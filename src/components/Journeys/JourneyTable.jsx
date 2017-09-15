@@ -19,8 +19,7 @@ export class JourneyTable extends Component {
   constructor(props) {
     super(props);
 
-    // NOTE: This should really be called callFetchJourneysAgain, or something
-    this.callRefreshJourneys = this.callRefreshJourneys.bind(this);
+    this.refreshJourneys = this.refreshJourneys.bind(this);
   }
 
   componentDidMount() {
@@ -28,8 +27,7 @@ export class JourneyTable extends Component {
     this.props.fetchJourneys(destinationId, origin, destinationsById[destinationId].address);
   }
 
-  // NOTE: This should really be called callFetchJourneysAgain, or something
-  callRefreshJourneys() {
+  refreshJourneys() {
     const { destinationId, origin, destinationsById } = this.props;
     this.props.fetchJourneys(destinationId, origin, destinationsById[destinationId].address);
   }
@@ -54,14 +52,14 @@ export class JourneyTable extends Component {
           steps={bestJourney.transitSteps}
           eta={bestJourney.arrivalTimeText}
           conditionStatus={bestJourneyStatus}
-          callRefreshJourneys={this.callRefreshJourneys}
+          refreshJourneys={this.refreshJourneys}
         />
         <JourneyRow
           timeToLeaveInSeconds={timeToLeaveNextBest}
           steps={nextBestJourney.transitSteps}
           eta={nextBestJourney.arrivalTimeText}
           conditionStatus={nextBestJourneyStatus}
-          callRefreshJourneys={this.callRefreshJourneys}
+          refreshJourneys={this.refreshJourneys}
         />
       </div>
     );
@@ -75,7 +73,6 @@ JourneyTable.propTypes = {
     1: PropTypes.object,
   }).isRequired,
   fetchJourneys: PropTypes.func.isRequired,
-  refreshJourneys: PropTypes.func.isRequired,
   journeys: PropTypes.arrayOf(PropTypes.object),
 };
 
@@ -84,7 +81,6 @@ JourneyTable.defaultProps = {
   origin: '',
   destinationsById: { 1: {} },
   fetchJourneys: () => {},
-  refreshJourneys: () => {},
   journeys: [
     {
       departureTimeUTC: Date.now(),
