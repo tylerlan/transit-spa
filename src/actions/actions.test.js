@@ -119,6 +119,9 @@ describe('actions', () => {
 
   it('should fetch journeys from TRANSIT_API', () => {
     const mockApiFetchJourneys = jest.fn();
+    const mockCreateArrayOfJourneyObjects = jest.fn();
+    const mockApplyAlerts = jest.fn();
+    const mockOffsetJourneys = jest.fn();
     mockApiFetchJourneys.mockReturnValue(
       Promise.resolve([
         {
@@ -158,6 +161,11 @@ describe('actions', () => {
       TRANSIT_API: {
         fetchJourneys: mockApiFetchJourneys,
         fetchAlerts: mockApiFetchAlerts,
+      },
+      HELPERS: {
+        createArrayOfJourneyObjects: mockCreateArrayOfJourneyObjects,
+        applyAlerts: mockApplyAlerts,
+        offsetJourneys: mockOffsetJourneys,
       },
     };
 
