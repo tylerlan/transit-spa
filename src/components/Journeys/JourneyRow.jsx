@@ -28,6 +28,8 @@ const minStyle = {
   minWidth: '80px',
 };
 
+// NOTE: This callRefreshJourneys really be called callFetchJourneysAgain, or something
+
 const JourneyRow = ({ timeToLeaveInSeconds, steps, eta, conditionStatus, callRefreshJourneys }) => (
   <div className="journey-row" style={journeyRowStyle}>
     <div style={minStyle}>

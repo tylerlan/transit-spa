@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchJourneys, refreshJourneys } from '../../actions';
+import { fetchJourneys } from '../../actions';
 
 import JourneyRow from './JourneyRow';
 
@@ -19,6 +19,7 @@ export class JourneyTable extends Component {
   constructor(props) {
     super(props);
 
+    // NOTE: This should really be called callFetchJourneysAgain, or something
     this.callRefreshJourneys = this.callRefreshJourneys.bind(this);
   }
 
@@ -27,9 +28,10 @@ export class JourneyTable extends Component {
     this.props.fetchJourneys(destinationId, origin, destinationsById[destinationId].address);
   }
 
+  // NOTE: This should really be called callFetchJourneysAgain, or something
   callRefreshJourneys() {
     const { destinationId, origin, destinationsById } = this.props;
-    this.props.refreshJourneys(destinationId, origin, destinationsById[destinationId].address);
+    this.props.fetchJourneys(destinationId, origin, destinationsById[destinationId].address);
   }
 
   render() {
@@ -131,7 +133,6 @@ export const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchJourneys,
-      refreshJourneys,
     },
     dispatch,
   );

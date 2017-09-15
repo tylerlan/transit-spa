@@ -18,6 +18,7 @@ describe('JourneyRow', () => {
         steps={steps}
         eta={eta}
         conditionStatus={conditionStatus}
+        // NOTE: This should really be called callFetchJourneysAgain, or something
         callRefreshJourneys={() => {}}
       />,
     );

@@ -17,6 +17,8 @@ class TimeToLeave extends Component {
   }
 
   timerExpired() {
+    // NOTE: This callRefreshJourneys really be called callFetchJourneysAgain, or something
+
     this.props.callRefreshJourneys();
   }
 
