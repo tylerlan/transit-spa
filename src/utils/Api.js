@@ -9,8 +9,6 @@ export default class TRANSIT_API {
       `${apiUrl}/directions?origin=${origin}&destination=${destination}&alternatives=true`,
     )
       .then(response => response.json())
-      .then(json => HELPERS.createArrayOfJourneyObjects(json))
-      .then(journeys => journeys)
       .catch((e) => {
         console.dir('ERROR IN FETCH JOURNEYS', e);
       });
