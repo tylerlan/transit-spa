@@ -125,6 +125,7 @@ describe('actions', () => {
   });
 
   it('should fetch journeys from TRANSIT_API', () => {
+    const theFuture = Date.now() + 500;
     const mockApiFetchJourneys = jest.fn();
     mockApiFetchJourneys.mockReturnValue(
       Promise.resolve([
@@ -133,7 +134,7 @@ describe('actions', () => {
             {
               end_address: '123 Main st',
               arrival_time: { text: '11:41am' },
-              departure_time: { value: 1501871210 },
+              departure_time: { value: theFuture },
               steps: [
                 {
                   html_instructions: 'Walk to Montgomery St. Station',
@@ -161,95 +162,10 @@ describe('actions', () => {
       }),
     );
 
-    const mockCreateArrayOfJourneyObjects = jest.fn();
-    mockCreateArrayOfJourneyObjects.mockReturnValue(
-      Promise.resolve([
-        {
-          destination: '123 Main st',
-          arrivalTimeText: '11:41am',
-          departureTimeUTC: 1501871210,
-          transitSteps: [
-            {
-              agency: '',
-              duration: '8 mins',
-              headsign: '',
-              icon: 'N/A',
-              instruction: 'Walk to Montgomery St. Station',
-              line: 'N/A',
-              localIcon: 'N/A',
-              longName: '',
-              mode: 'WALKING',
-              shortName: '',
-              vehicle: 'N/A',
-            },
-          ],
-        },
-      ]),
-    );
-
-    const mockApplyAlerts = jest.fn();
-    mockApplyAlerts.mockReturnValue(
-      Promise.resolve([
-        {
-          alerts: ['on-time'],
-          destination: '123 Main st',
-          arrivalTimeText: '11:41am',
-          departureTimeUTC: 1501871210,
-          transitSteps: [
-            {
-              agency: '',
-              duration: '8 mins',
-              headsign: '',
-              icon: 'N/A',
-              instruction: 'Walk to Montgomery St. Station',
-              line: 'N/A',
-              localIcon: 'N/A',
-              longName: '',
-              mode: 'WALKING',
-              shortName: '',
-              vehicle: 'N/A',
-            },
-          ],
-        },
-      ]),
-    );
-
-    const mockOffsetJourneys = jest.fn();
-    mockOffsetJourneys.mockReturnValue(
-      Promise.resolve([
-        {
-          alerts: ['on-time'],
-          destination: '123 Main st',
-          arrivalTimeText: '11:41am',
-          departureTimeUTC: 1501871210,
-          transitSteps: [
-            {
-              agency: '',
-              duration: '8 mins',
-              headsign: '',
-              icon: 'N/A',
-              instruction: 'Walk to Montgomery St. Station',
-              line: 'N/A',
-              localIcon: 'N/A',
-              longName: '',
-              mode: 'WALKING',
-              shortName: '',
-              vehicle: 'N/A',
-            },
-          ],
-        },
-      ]),
-    );
-
     const extraArgument = {
       TRANSIT_API: {
         fetchJourneys: mockApiFetchJourneys,
         fetchAlerts: mockApiFetchAlerts,
-      },
-      HELPERS: {
-        createArrayOfJourneyObjects: mockCreateArrayOfJourneyObjects,
-        applyAlerts: mockApplyAlerts,
-        offsetJourneys: mockOffsetJourneys,
       },
     };
 
@@ -290,7 +206,7 @@ describe('actions', () => {
             alerts: ['on-time'],
             destination: '123 Main st',
             arrivalTimeText: '11:41am',
-            departureTimeUTC: 1501871210,
+            departureTimeUTC: theFuture,
             transitSteps: [
               {
                 agency: '',

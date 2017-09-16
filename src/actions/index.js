@@ -1,4 +1,5 @@
 import * as TYPES from '../constants/constants';
+import * as HELPERS from '../utils/helpers';
 
 export function updateCurrentLocation() {
   return async (dispatch, getState, { TRANSIT_API }) => {
@@ -45,12 +46,12 @@ export function removeDestination(destinationId) {
 }
 
 export function fetchJourneys(destinationId, origin, destination) {
-  return async (dispatch, getState, { TRANSIT_API, HELPERS }) => {
+  return async (dispatch, getState, { TRANSIT_API }) => {
     // NOTE: json also includes fare{}, bounds{}, and polyline{}--not being used
     const json = await TRANSIT_API.fetchJourneys(origin, destination);
     const alerts = await TRANSIT_API.fetchAlerts();
 
-    const journeys = HELPERS.createArrayOfJourneyObjects(json);
+    const journeys = await HELPERS.createArrayOfJourneyObjects(json);
     const journeysWithAlerts = await HELPERS.applyAlerts(journeys, alerts);
     const journeysOffset = await HELPERS.offsetJourneys(journeysWithAlerts);
 
