@@ -2,6 +2,7 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 // import nock from 'nock';
 import * as TYPES from '../constants/constants';
+import * as HELPERS from '../utils/helpers';
 import * as actions from './index';
 
 describe('actions', () => {
@@ -124,9 +125,18 @@ describe('actions', () => {
     expect(actions.removeDestination(destinationId)).toEqual(expectedAction);
   });
 
-  it('should fetch journeys from TRANSIT_API', () => {
+  it('should addJourneys and alerts when there are no journeys in the state', () => {
     const theFuture = Date.now() + 500;
     const mockApiFetchJourneys = jest.fn();
+
+    // const mockCreateArrayOfJourneyObjects = jest.fn();
+    // const mockApplyAlerts = jest.fn();
+    // const mockOffsetJourneys = jest.fn();
+    //
+    // expect(mockCreateArrayOfJourneyObjects).toHaveBeenCalled();
+    // expect(mockApplyAlerts).toHaveBeenCalled();
+    // expect(mockOffsetJourneys).toHaveBeenCalled();
+
     mockApiFetchJourneys.mockReturnValue(
       Promise.resolve([
         {
@@ -169,7 +179,7 @@ describe('actions', () => {
       },
     };
 
-    const initialState = {
+    const stateWithNoJourneys = {
       widgets: {
         ids: ['transit'],
         byId: {
@@ -240,7 +250,159 @@ describe('actions', () => {
     ];
 
     const mockStore = configureStore([thunk.withExtraArgument(extraArgument)]);
-    const store = mockStore(initialState);
+    const store = mockStore(stateWithNoJourneys);
+
+    return store.dispatch(actions.fetchJourneys(5, 'home', 'work')).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
+
+  it('should removeJourneys and addJourneys and alerts when there are already journeys in the state for a destination', () => {
+    const theFuture = Date.now() + 500;
+    const mockApiFetchJourneys = jest.fn();
+
+    mockApiFetchJourneys.mockReturnValue(
+      Promise.resolve([
+        {
+          legs: [
+            {
+              end_address: '123 Main st',
+              arrival_time: { text: '12:00pm' },
+              departure_time: { value: theFuture },
+              steps: [
+                {
+                  html_instructions: 'Walk to Montgomery St. Station',
+                  travel_mode: 'WALKING',
+                  duration: { text: '8 mins' },
+                  line: 'N/A',
+                  vehicle: 'N/A',
+                },
+              ],
+            },
+          ],
+        },
+      ]),
+    );
+    const mockApiFetchAlerts = jest.fn();
+    mockApiFetchAlerts.mockReturnValue(
+      Promise.resolve({
+        1: {
+          affectedLines: ['18', '52'],
+          description:
+            'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
+          subject:
+            'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
+        },
+      }),
+    );
+
+    const extraArgument = {
+      TRANSIT_API: {
+        fetchJourneys: mockApiFetchJourneys,
+        fetchAlerts: mockApiFetchAlerts,
+      },
+    };
+
+    const stateWithSomeJourneys = {
+      widgets: {
+        ids: ['transit'],
+        byId: {
+          transit: {
+            configuration: {
+              currentLocation: {
+                address: '44 Tehama St, San Francisco, CA 94105',
+              },
+            },
+            destinations: {
+              ids: [5],
+              byId: {
+                5: {
+                  id: 5,
+                  address: 'SFO, San Francisco, CA 94128',
+                },
+              },
+            },
+            journeys: {
+              byDestinationId: {
+                5: [
+                  {
+                    alerts: ['on-time'],
+                    destination: '123 Main st',
+                    arrivalTimeText: '12:00pm',
+                    departureTimeUTC: theFuture,
+                    transitSteps: [
+                      {
+                        agency: '',
+                        duration: '8 mins',
+                        headsign: '',
+                        icon: 'N/A',
+                        instruction: 'Walk to Montgomery St. Station',
+                        line: 'N/A',
+                        localIcon: 'N/A',
+                        longName: '',
+                        mode: 'WALKING',
+                        shortName: '',
+                        vehicle: 'N/A',
+                      },
+                    ],
+                  },
+                ],
+              },
+            },
+            alerts: {},
+          },
+        },
+      },
+    };
+
+    const expectedActions = [
+      {
+        type: TYPES.REMOVE_JOURNEYS,
+        destinationId: 5,
+      },
+      {
+        type: TYPES.ADD_JOURNEYS,
+        destinationId: 5,
+        journeys: [
+          {
+            alerts: ['on-time'],
+            destination: '123 Main st',
+            arrivalTimeText: '12:00pm',
+            departureTimeUTC: theFuture,
+            transitSteps: [
+              {
+                agency: '',
+                duration: '8 mins',
+                headsign: '',
+                icon: 'N/A',
+                instruction: 'Walk to Montgomery St. Station',
+                line: 'N/A',
+                localIcon: 'N/A',
+                longName: '',
+                mode: 'WALKING',
+                shortName: '',
+                vehicle: 'N/A',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        type: TYPES.ALERTS_RETRIEVED,
+        alerts: {
+          1: {
+            affectedLines: ['18', '52'],
+            description:
+              'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
+            subject:
+              'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
+          },
+        },
+      },
+    ];
+
+    const mockStore = configureStore([thunk.withExtraArgument(extraArgument)]);
+    const store = mockStore(stateWithSomeJourneys);
 
     return store.dispatch(actions.fetchJourneys(5, 'home', 'work')).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
