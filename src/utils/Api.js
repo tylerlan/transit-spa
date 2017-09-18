@@ -6,15 +6,15 @@ export default class TRANSIT_API {
     return fetch(
       `${apiUrl}/directions?origin=${origin}&destination=${destination}&alternatives=true`,
     )
-    .then(response => response.json())
-    .catch(e => e);
+      .then(response => response.json())
+      .catch(e => e);
   }
 
   static getCurrentLocation() {
     const getPosition = options =>
-    new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject, options);
-    });
+      new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, options);
+      });
 
     return getPosition().then((position) => {
       const lat = position.coords.latitude;
@@ -22,20 +22,18 @@ export default class TRANSIT_API {
       const location = { lat, lng };
       const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${lat},${lng}&key=${googleMapsKey}`;
       return fetch(url)
-      .then(response => response.json())
-      .then((data) => {
-        location.address = data.results[0].formatted_address;
-        return location;
-      })
-      .catch(e => e);
+        .then(response => response.json())
+        .then((data) => {
+          location.address = data.results[0].formatted_address;
+          return location;
+        })
+        .catch(e => e);
     });
   }
 
   static fetchAlerts() {
-    return fetch(
-      `${apiUrl}/alerts`,
-    )
-    .then(response => response.json())
-    .catch(e => e);
+    return fetch(`${apiUrl}/alerts`)
+      .then(response => response.json())
+      .catch(e => e);
   }
 }

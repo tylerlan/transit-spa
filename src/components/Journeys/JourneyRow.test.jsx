@@ -18,7 +18,7 @@ describe('JourneyRow', () => {
         steps={steps}
         eta={eta}
         conditionStatus={conditionStatus}
-        callRefreshJourneys={() => {}}
+        refreshJourneys={() => {}}
       />,
     );
     expect(toJson(component)).toMatchSnapshot();

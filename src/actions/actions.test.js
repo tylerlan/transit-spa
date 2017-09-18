@@ -23,23 +23,30 @@ describe('actions', () => {
     };
 
     const initialState = {
-      configuration: {
-        geolocating: false,
-        currentLocation: {
-          address: '44 Tehama St, San Francisco, CA 94105',
-        },
-      },
-      destinations: {
-        ids: [5],
+      widgets: {
+        ids: ['transit'],
         byId: {
-          5: {
-            id: 5,
-            address: 'SFO, San Francisco, CA 94128',
+          transit: {
+            configuration: {
+              geolocating: false,
+              currentLocation: {
+                address: '44 Tehama St, San Francisco, CA 94105',
+              },
+            },
+            destinations: {
+              ids: [5],
+              byId: {
+                5: {
+                  id: 5,
+                  address: 'SFO, San Francisco, CA 94128',
+                },
+              },
+            },
+            journeys: {
+              byDestinationId: {},
+            },
           },
         },
-      },
-      journeys: {
-        byDestinationId: {},
       },
     };
 
@@ -118,6 +125,7 @@ describe('actions', () => {
   });
 
   it('should fetch journeys from TRANSIT_API', () => {
+    const theFuture = Date.now() + 500;
     const mockApiFetchJourneys = jest.fn();
     mockApiFetchJourneys.mockReturnValue(
       Promise.resolve([
@@ -126,7 +134,7 @@ describe('actions', () => {
             {
               end_address: '123 Main st',
               arrival_time: { text: '11:41am' },
-              departure_time: { value: 1501871210 },
+              departure_time: { value: theFuture },
               steps: [
                 {
                   html_instructions: 'Walk to Montgomery St. Station',
@@ -162,25 +170,30 @@ describe('actions', () => {
     };
 
     const initialState = {
-      alerts: {
-        alerts: {},
-      },
-      configuration: {
-        currentLocation: {
-          address: '44 Tehama St, San Francisco, CA 94105',
-        },
-      },
-      destinations: {
-        ids: [5],
+      widgets: {
+        ids: ['transit'],
         byId: {
-          5: {
-            id: 5,
-            address: 'SFO, San Francisco, CA 94128',
+          transit: {
+            configuration: {
+              currentLocation: {
+                address: '44 Tehama St, San Francisco, CA 94105',
+              },
+            },
+            destinations: {
+              ids: [5],
+              byId: {
+                5: {
+                  id: 5,
+                  address: 'SFO, San Francisco, CA 94128',
+                },
+              },
+            },
+            journeys: {
+              byDestinationId: {},
+            },
+            alerts: {},
           },
         },
-      },
-      journeys: {
-        byDestinationId: {},
       },
     };
 
@@ -190,9 +203,10 @@ describe('actions', () => {
         destinationId: 5,
         journeys: [
           {
+            alerts: ['on-time'],
             destination: '123 Main st',
             arrivalTimeText: '11:41am',
-            departureTimeUTC: 1501871210,
+            departureTimeUTC: theFuture,
             transitSteps: [
               {
                 agency: '',
@@ -208,7 +222,6 @@ describe('actions', () => {
                 vehicle: 'N/A',
               },
             ],
-            alerts: ['on-time'],
           },
         ],
       },
