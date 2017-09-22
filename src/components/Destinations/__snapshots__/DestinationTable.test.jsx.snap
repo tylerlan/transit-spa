@@ -1,11 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DestinationTable should render an empty table 1`] = `
+exports[`DestinationTable mapStateToProps 1`] = `
 <div>
-  <Component
+  <DestinationRow
     className="destination-row"
     id={1}
-    name=""
+    name="Civic Center"
+    style={
+      Object {
+        "margin": "1rem 0rem",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`DestinationTable should render an empty table 1`] = `
+<div>
+  <DestinationRow
+    className="destination-row"
+    id={1}
+    name="Civic Center"
     style={
       Object {
         "margin": "1rem 0rem",
