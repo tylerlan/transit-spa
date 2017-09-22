@@ -70,15 +70,15 @@ describe('root reducer', () => {
               alerts: {},
             },
             configuration: {
-              geolocating: true,
+              currentLocation: {
+                geolocating: true,
+              },
             },
             destinations: {
-              ids: [],
               byId: {},
+              ids: [],
             },
-            journeys: {
-              byDestinationId: {},
-            },
+            journeys: { byDestinationId: {} },
           },
         },
         ids: ['transit'],
