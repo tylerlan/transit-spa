@@ -69,6 +69,8 @@ PlacesAutocompleteForm.defaultProps = {
   origin: '',
 };
 
+// TODO: TEST MAPSTATETOPROPS AND MAPDISPATCHTOPROPS
+
 export const mapStateToProps = (state, ownProps) => {
   const id = ownProps.widgetId;
   const origin = state.widgets.byId[id].configuration.currentLocation.address;

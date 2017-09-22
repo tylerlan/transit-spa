@@ -35,6 +35,8 @@ DestinationTable.defaultProps = {
   destinationsById: { 1: {} },
 };
 
+// TODO: TEST MAPSTATETOPROPS AND MAPDISPATCHTOPROPS
+
 export const mapStateToProps = (state, ownProps) => {
   const id = ownProps.widgetId;
   const destinationIds = state.widgets.byId[id].destinations.ids;
