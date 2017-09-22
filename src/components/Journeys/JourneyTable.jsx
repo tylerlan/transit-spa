@@ -11,8 +11,6 @@ import injectWidgetId from '../../utils/utils';
 
 import { timeToLeaveConverter } from '../../utils/journeyTableHelpers';
 
-// TODO: MOVE timeToLeaveConverter INTO HELPER FUNCTIONS
-
 export class JourneyTable extends Component {
   constructor(props) {
     super(props);
@@ -106,8 +104,6 @@ JourneyTable.defaultProps = {
     },
   ],
 };
-
-// TODO: TEST MAPSTATETOPROPS AND MAPDISPATCHTOPROPS
 
 export const mapStateToProps = (state, ownProps) => {
   const id = ownProps.widgetId;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import { JourneyTable, mapDispatchToProps } from './JourneyTable';
+import { JourneyTable, mapStateToProps, mapDispatchToProps } from './JourneyTable';
 
 describe('JourneyTable', () => {
   const testData = {
@@ -58,6 +58,52 @@ describe('JourneyTable', () => {
     );
     expect(toJson(component)).toMatchSnapshot();
   });
+
+  it("mapStateToProps", () => {
+
+    const state = {
+      widgets: {
+        ids: ['transit'],
+        byId: {
+          transit: {
+            configuration: {
+              geolocating: false,
+              currentLocation: {
+                address: '44 Tehama St, San Francisco, CA 94105',
+              },
+            },
+            destinations: {
+              ids: [5],
+              byId: {
+                5: {
+                  id: 5,
+                  address: 'SFO, San Francisco, CA 94128',
+                },
+              },
+            },
+            journeys: {
+              byDestinationId: {},
+            },
+          },
+        },
+      },
+    };
+
+  const expected = {
+    "alerts": undefined,
+     "destinationId": 5,
+     "destinationsById":  {
+       "5":  {
+         "address": "SFO, San Francisco, CA 94128",
+         "id": 5,
+       },
+     },
+     "journeys": undefined,
+     "origin": "44 Tehama St, San Francisco, CA 94105",
+  };
+  expect(mapStateToProps(state, {id: 5, widgetId: "transit"})).toEqual(expected);
+});
+
 
   it('mapDispatchToProps', () => {
     const dispatch = jest.fn();
