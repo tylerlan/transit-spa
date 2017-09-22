@@ -10,25 +10,34 @@ export default class TRANSIT_API {
       .catch(e => e);
   }
 
-  static getCurrentLocation() {
-    const getPosition = options =>
-      new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject, options);
-      });
-
-    return getPosition().then((position) => {
-      const lat = position.coords.latitude;
-      const lng = position.coords.longitude;
-      const location = { lat, lng };
-      const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${lat},${lng}&key=${googleMapsKey}`;
-      return fetch(url)
-        .then(response => response.json())
-        .then((data) => {
-          location.address = data.results[0].formatted_address;
-          return location;
-        })
-        .catch(e => e);
+  static getPosition(options) {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject, options);
     });
+  }
+
+  static fetchCurrentLocation(url) {
+    return fetch(url).then(response => response.json());
+  }
+
+  static getCurrentLocation() {
+    return this.getPosition()
+      .then(async (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        const locationObj = { lat, lng };
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${lat},${lng}&key=${googleMapsKey}`;
+
+        const locationInfo = await this.fetchCurrentLocation(url);
+
+        return { locationObj, locationInfo };
+      })
+      .then((data) => {
+        const { locationObj, locationInfo } = data;
+        locationObj.address = locationInfo.results[0].formatted_address;
+        return locationObj;
+      })
+      .catch(e => e);
   }
 
   static fetchAlerts() {
