@@ -21,6 +21,7 @@ export class PlacesAutocompleteForm extends Component {
     this.setState({ address: '' });
   };
 
+  // TODO: TEST handleFormSubmit, CALL TO fetchJourneys, AND SIMULATE ERROR
   handleFormSubmit = (event) => {
     event.preventDefault();
 
