@@ -14,20 +14,6 @@ const bartstep = {
   vehicle: 'Metro rail',
 };
 
-const vtaStep = {
-  agency: 'VTA',
-  duration: '24 mins',
-  headsign: 'Great Mall',
-  icon: undefined,
-  instruction: 'Bus towards great Mall',
-  line: undefined,
-  localIcon: undefined,
-  longName: undefined,
-  mode: 'TRANSIT',
-  shortName: '70',
-  vehicle: 'Bus',
-};
-
 describe('formatAgency', () => {
   it('should replace Bay Area Rapid Transit with BART', () => {
     expect(formatAgency(bartstep)).toEqual('BART');

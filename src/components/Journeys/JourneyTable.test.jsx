@@ -59,8 +59,7 @@ describe('JourneyTable', () => {
     expect(toJson(component)).toMatchSnapshot();
   });
 
-  it("mapStateToProps", () => {
-
+  it('mapStateToProps', () => {
     const state = {
       widgets: {
         ids: ['transit'],
@@ -89,21 +88,20 @@ describe('JourneyTable', () => {
       },
     };
 
-  const expected = {
-    "alerts": undefined,
-     "destinationId": 5,
-     "destinationsById":  {
-       "5":  {
-         "address": "SFO, San Francisco, CA 94128",
-         "id": 5,
-       },
-     },
-     "journeys": undefined,
-     "origin": "44 Tehama St, San Francisco, CA 94105",
-  };
-  expect(mapStateToProps(state, {id: 5, widgetId: "transit"})).toEqual(expected);
-});
-
+    const expected = {
+      alerts: undefined,
+      destinationId: 5,
+      destinationsById: {
+        5: {
+          address: 'SFO, San Francisco, CA 94128',
+          id: 5,
+        },
+      },
+      journeys: undefined,
+      origin: '44 Tehama St, San Francisco, CA 94105',
+    };
+    expect(mapStateToProps(state, { id: 5, widgetId: 'transit' })).toEqual(expected);
+  });
 
   it('mapDispatchToProps', () => {
     const dispatch = jest.fn();

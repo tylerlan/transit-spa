@@ -1,4 +1,4 @@
-export function createArrayOfJourneyObjects(json) {
+function createArrayOfJourneyObjects(json) {
   const arrayOfJouneyObjects = json.map((rawJourneyObj) => {
     const journeyObj = {
       destination: rawJourneyObj.legs[0].end_address,
@@ -43,7 +43,7 @@ export function createArrayOfJourneyObjects(json) {
   return arrayOfJouneyObjects;
 }
 
-export function applyAlerts(arrayOfJouneyObjects, alerts) {
+function applyAlerts(arrayOfJouneyObjects, alerts) {
   arrayOfJouneyObjects.forEach((journeyObject) => {
     const journey = journeyObject;
     journey.alerts = [];
@@ -77,7 +77,7 @@ export function applyAlerts(arrayOfJouneyObjects, alerts) {
   return arrayOfJouneyObjects;
 }
 
-export function offsetJourneys(arrayOfJouneyObjects) {
+function offsetJourneys(arrayOfJouneyObjects) {
   const journeysOffset = arrayOfJouneyObjects
     .filter((journey) => {
       const currentTimeInSeconds = Date.now() / 1000;
@@ -89,3 +89,5 @@ export function offsetJourneys(arrayOfJouneyObjects) {
 
   return journeysOffset;
 }
+
+export { createArrayOfJourneyObjects, applyAlerts, offsetJourneys };

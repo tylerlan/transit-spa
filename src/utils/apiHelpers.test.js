@@ -1,4 +1,4 @@
-import { createArrayOfJourneyObjects, applyAlerts, offsetJourneys } from './apiHelpers';
+import { createArrayOfJourneyObjects } from './apiHelpers';
 
 describe('createArrayOfJourneyObjects', () => {
   const data = [
@@ -49,17 +49,5 @@ describe('createArrayOfJourneyObjects', () => {
         },
       ]),
     );
-  });
-
-  describe('applyAlerts', () => {
-    it('should exist', () => {
-      expect(applyAlerts).toExist;
-    });
-  });
-
-  describe('offsetJourneys', () => {
-    it('should exist', () => {
-      expect(offsetJourneys).toExist;
-    });
   });
 });

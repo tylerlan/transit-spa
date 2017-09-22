@@ -11,7 +11,7 @@ import sfBayFerryLogo from '../images/transit/SfBayFerry-logo.png';
 import sfmtaLogo from '../images/transit/SFMTA-logo.png';
 import vtaLogo from '../images/transit/VTA-logo.png';
 
-export function formatAgency(step) {
+function formatAgency(step) {
   let output = '';
   if (step.mode.includes('WALKING')) {
     output = 'Walk';
@@ -22,7 +22,7 @@ export function formatAgency(step) {
   return output;
 }
 
-export function getInstructions(step) {
+function getInstructions(step) {
   let instr = '';
   if (!step) return instr;
 
@@ -41,7 +41,7 @@ export function getInstructions(step) {
   return instr;
 }
 
-export function formatTransitGraphic(agency, step) {
+function formatTransitGraphic(agency, step) {
   const output = {
     iconURL: null,
     transitLine: null,
@@ -115,3 +115,5 @@ export function formatTransitGraphic(agency, step) {
 
   return output;
 }
+
+export { formatAgency, getInstructions, formatTransitGraphic };

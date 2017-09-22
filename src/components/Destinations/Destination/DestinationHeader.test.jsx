@@ -6,7 +6,7 @@ import DestinationHeader from './DestinationHeader';
 describe('DestinationHeader', () => {
   it('should render when passed required props', () => {
     const name = 'Tartine';
-    const component = shallow( <DestinationHeader name={name} />);
+    const component = shallow(<DestinationHeader name={name} />);
 
     expect(toJson(component)).toMatchSnapshot();
   });

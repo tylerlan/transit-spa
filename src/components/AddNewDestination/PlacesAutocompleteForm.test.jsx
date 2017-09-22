@@ -1,13 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import { PlacesAutocompleteForm, mapStateToProps, mapDispatchToProps  } from './PlacesAutocompleteForm';
+import {
+  PlacesAutocompleteForm,
+  mapStateToProps,
+  mapDispatchToProps,
+} from './PlacesAutocompleteForm';
 
 describe('PlacesAutocompleteForm', () => {
   const state = {
     widgets: {
       byId: {
-        'transit': {
+        transit: {
           configuration: {
             geolocating: true,
             currentLocation: {
@@ -21,13 +25,12 @@ describe('PlacesAutocompleteForm', () => {
     },
   };
 
-
   it('should render an empty form', () => {
     const component = shallow(<PlacesAutocompleteForm />);
     expect(toJson(component)).toMatchSnapshot();
   });
 
-  it("mapStateToProps", () => {
+  it('mapStateToProps', () => {
     const expected = {
       origin: '44 Tehama St, San Francisco, CA 94105',
     };
@@ -38,18 +41,4 @@ describe('PlacesAutocompleteForm', () => {
     const dispatch = jest.fn();
     expect(mapDispatchToProps(dispatch)).toHaveProperty('addDestination');
   });
-
-
-
-
-
-
-
-
 });
-
-/*
-There is a submit button in the form but it's not possible to test it. The
-reason is that when mounting the component a Google library is loaded and it
-needs to have a window context.
-*/
