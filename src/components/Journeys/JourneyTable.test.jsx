@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import { JourneyTable, timeToLeaveConverter, mapDispatchToProps } from './JourneyTable';
+import { JourneyTable, mapDispatchToProps } from './JourneyTable';
 
 describe('JourneyTable', () => {
   const testData = {
@@ -38,8 +38,10 @@ describe('JourneyTable', () => {
     alerts: {
       1: {
         affectedLines: ['18', '52'],
-        description: 'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
-        subject: 'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
+        description:
+          'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
+        subject:
+          'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
       },
     },
   };
@@ -77,12 +79,5 @@ describe('JourneyTable', () => {
     );
 
     expect(fetchJourneys).toHaveBeenCalled();
-  });
-});
-
-describe('timeToLeaveConverter', () => {
-  it('should return positive integer', () => {
-    const futureTimeInSeconds = Date.now() + 1000;
-    expect(timeToLeaveConverter(futureTimeInSeconds)).toBeGreaterThanOrEqual(1);
   });
 });

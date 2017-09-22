@@ -9,11 +9,9 @@ import JourneyRow from './JourneyRow';
 
 import injectWidgetId from '../../utils/utils';
 
-export function timeToLeaveConverter(departureTimeInSeconds) {
-  const currentTimeInSeconds = Date.now() / 1000;
-  const diff = departureTimeInSeconds - currentTimeInSeconds;
-  return Math.floor(diff);
-}
+import { timeToLeaveConverter } from '../../utils/journeyTableHelpers';
+
+// TODO: MOVE timeToLeaveConverter INTO HELPER FUNCTIONS
 
 export class JourneyTable extends Component {
   constructor(props) {
@@ -108,6 +106,9 @@ JourneyTable.defaultProps = {
     },
   ],
 };
+
+// TODO: TEST MAPSTATETOPROPS AND MAPDISPATCHTOPROPS
+
 export const mapStateToProps = (state, ownProps) => {
   const id = ownProps.widgetId;
   const origin = state.widgets.byId[id].configuration.currentLocation.address;
