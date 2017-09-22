@@ -23,6 +23,7 @@ export class JourneyTable extends Component {
     this.props.fetchJourneys(destinationId, origin, destinationsById[destinationId].address);
   }
 
+  // TODO: TEST refreshJourneys
   refreshJourneys() {
     const { destinationId, origin, destinationsById } = this.props;
     this.props.fetchJourneys(destinationId, origin, destinationsById[destinationId].address);
