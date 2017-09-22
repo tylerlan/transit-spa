@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DestinationRow should render an empty form 1`] = `
+exports[`DestinationRow should render when given a name and id 1`] = `
 <div>
   <Connect(RemoveDestinationButton)
     id={1}
@@ -9,7 +9,7 @@ exports[`DestinationRow should render an empty form 1`] = `
     compact={true}
   >
     <DestinationHeader
-      name=""
+      name="Tartine"
     />
   </Segment>
   <Segment
