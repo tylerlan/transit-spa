@@ -36,9 +36,7 @@ RemoveDestinationButton.defaultProps = {
   removeDestination: () => {},
 };
 
-// TODO: TEST MAPDISPATCHTOPROPS
-
-const mapDispatchToProps = dispatch =>
+export const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       removeDestination,
