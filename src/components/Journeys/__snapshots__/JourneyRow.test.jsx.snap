@@ -22,7 +22,7 @@ exports[`JourneyRow should render when passed required props 1`] = `
       Object {
         "alignItems": "center",
         "clear": "both",
-        "display": "flex",
+        "display": "inline-flex",
         "margin": "auto",
         "padding": "0.5rem",
       }

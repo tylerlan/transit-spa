@@ -4,12 +4,7 @@ import toJson from 'enzyme-to-json';
 import { DestinationTable, mapStateToProps } from './DestinationTable';
 
 describe('DestinationTable', () => {
-  it('should render an empty table', () => {
-    const component = shallow(<DestinationTable />);
-    expect(toJson(component)).toMatchSnapshot();
-  });
-
-  it('mapStateToProps', () => {
+  it('should render', () => {
     const component = shallow(<DestinationTable />);
     expect(toJson(component)).toMatchSnapshot();
   });

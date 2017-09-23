@@ -9,15 +9,11 @@ import RemoveDestinationButton from './RemoveDestinationButton';
 import './destination.css';
 
 const DestinationRow = ({ id, name }) => (
-  <div>
+  <Segment textAlign="center" compact>
     <RemoveDestinationButton id={id} />
-    <Segment compact>
-      <DestinationHeader name={name} />
-    </Segment>
-    <Segment textAlign="center" compact>
-      <JourneyTable id={id} />
-    </Segment>
-  </div>
+    <DestinationHeader name={name} />
+    <JourneyTable id={id} />
+  </Segment>
 );
 
 DestinationRow.propTypes = {

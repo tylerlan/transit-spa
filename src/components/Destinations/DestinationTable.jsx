@@ -5,24 +5,19 @@ import PropTypes from 'prop-types';
 import DestinationRow from './DestinationRow';
 import injectWidgetId from '../../utils/utils';
 
-export const DestinationTable = ({ destinationIds, destinationsById }) => {
-  // TODO: TEST loading...
-  if (!destinationIds) return <div>Loading...</div>;
-
-  return (
-    <div>
-      {destinationIds.map(id => (
-        <DestinationRow
-          key={id}
-          id={id}
-          name={destinationsById[id].address}
-          style={{ margin: '1rem 0rem' }}
-          className="destination-row"
-        />
+export const DestinationTable = ({ destinationIds, destinationsById }) => (
+  <div>
+    {destinationIds.map(id => (
+      <DestinationRow
+        key={id}
+        id={id}
+        name={destinationsById[id].address}
+        style={{ margin: '1rem 0rem' }}
+        className="destination-row"
+      />
       ))}
-    </div>
+  </div>
   );
-};
 
 DestinationTable.propTypes = {
   destinationIds: PropTypes.arrayOf(PropTypes.number).isRequired,
