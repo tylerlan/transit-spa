@@ -2,16 +2,20 @@
 
 exports[`Timer renders double-digit minutes and seconds when passed seconds as props 1`] = `
 <div>
-  10
-  :
-  00
+  <div>
+    10
+    :
+    00
+  </div>
 </div>
 `;
 
 exports[`Timer renders minutes and seconds when passed seconds as props 1`] = `
 <div>
-  02
-  :
-  00
+  <div>
+    02
+    :
+    00
+  </div>
 </div>
 `;

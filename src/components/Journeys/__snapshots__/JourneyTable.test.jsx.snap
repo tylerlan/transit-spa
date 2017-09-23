@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`JourneyTable should render Loading... 1`] = `
-<div>
-  Loading...
-</div>
+<Loader
+  active={true}
+  inline="centered"
+/>
 `;

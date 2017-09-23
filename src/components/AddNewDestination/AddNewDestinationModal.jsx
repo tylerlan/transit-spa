@@ -10,6 +10,8 @@ class AddNewDestinationModal extends Component {
     this.state = { modalOpen: false };
   }
 
+  // TODO: TEST SIMULATE OPEN AND CLOSE
+
   handleOpen = () =>
     this.setState({
       modalOpen: true,

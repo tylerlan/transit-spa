@@ -3,17 +3,13 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchJourneys } from '../../actions';
+import { Loader } from 'semantic-ui-react';
 
 import JourneyRow from './JourneyRow';
 
+import { fetchJourneys } from '../../actions';
+import { timeToLeaveConverter } from '../../utils/journeyTableHelpers';
 import injectWidgetId from '../../utils/utils';
-
-export function timeToLeaveConverter(departureTimeInSeconds) {
-  const currentTimeInSeconds = Date.now() / 1000;
-  const diff = departureTimeInSeconds - currentTimeInSeconds;
-  return Math.floor(diff);
-}
 
 export class JourneyTable extends Component {
   constructor(props) {
@@ -27,6 +23,7 @@ export class JourneyTable extends Component {
     this.props.fetchJourneys(destinationId, origin, destinationsById[destinationId].address);
   }
 
+  // TODO: TEST refreshJourneys
   refreshJourneys() {
     const { destinationId, origin, destinationsById } = this.props;
     this.props.fetchJourneys(destinationId, origin, destinationsById[destinationId].address);
@@ -35,7 +32,9 @@ export class JourneyTable extends Component {
   render() {
     const { journeys } = this.props;
 
-    if (!journeys || journeys.length === 0) return <div>Loading...</div>;
+    if (!journeys || journeys.length === 0) {
+      return <Loader active inline="centered" />;
+    }
 
     const bestJourney = journeys[0];
     const nextBestJourney = journeys[1];
@@ -66,6 +65,7 @@ export class JourneyTable extends Component {
   }
 }
 
+/* eslint-disable react/require-default-props */
 JourneyTable.propTypes = {
   destinationId: PropTypes.number.isRequired,
   origin: PropTypes.string.isRequired,
@@ -76,38 +76,6 @@ JourneyTable.propTypes = {
   journeys: PropTypes.arrayOf(PropTypes.object),
 };
 
-JourneyTable.defaultProps = {
-  destinationId: 1,
-  origin: '',
-  destinationsById: { 1: {} },
-  fetchJourneys: () => {},
-  journeys: [
-    {
-      departureTimeUTC: Date.now(),
-      arrivalTimeText: '00:00am',
-      transitSteps: [
-        { duration: '1 mins', instruction: 'Walk to Some St. Station', mode: 'WALKING' },
-        {
-          duration: '23 mins',
-          instruction: 'Metro rail towards Warm Springs/South Fremont',
-          mode: 'TRANSIT',
-        },
-      ],
-    },
-    {
-      departureTimeUTC: Date.now(),
-      arrivalTimeText: '00:00pm',
-      transitSteps: [
-        { duration: '4 mins', instruction: 'Walk to Some St. Station', mode: 'WALKING' },
-        {
-          duration: '56 mins',
-          instruction: 'Metro rail towards Warm Springs/South Fremont',
-          mode: 'TRANSIT',
-        },
-      ],
-    },
-  ],
-};
 export const mapStateToProps = (state, ownProps) => {
   const id = ownProps.widgetId;
   const origin = state.widgets.byId[id].configuration.currentLocation.address;

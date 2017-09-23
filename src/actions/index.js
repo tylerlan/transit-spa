@@ -1,5 +1,5 @@
 import * as TYPES from '../constants/constants';
-import * as HELPERS from '../utils/helpers';
+import * as HELPERS from '../utils/apiHelpers';
 
 export function updateCurrentLocation() {
   return async (dispatch, getState, { TRANSIT_API }) => {

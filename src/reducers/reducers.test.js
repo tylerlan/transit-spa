@@ -34,6 +34,60 @@ describe('root reducer', () => {
     expect(reducer(undefined, {})).toEqual(expectedInitialState);
   });
 
+  it('should handle action type GEOLOCATING', () => {
+    const oldState = {
+      widgets: {
+        byId: {
+          transit: {
+            alerts: {
+              alerts: {},
+            },
+            configuration: {
+              geolocating: false,
+            },
+            destinations: {
+              ids: [],
+              byId: {},
+            },
+            journeys: {
+              byDestinationId: {},
+            },
+          },
+        },
+        ids: ['transit'],
+      },
+    };
+
+    const action = {
+      type: TYPES.GEOLOCATING,
+    };
+
+    const newState = {
+      widgets: {
+        byId: {
+          transit: {
+            alerts: {
+              alerts: {},
+            },
+            configuration: {
+              currentLocation: {
+                geolocating: true,
+              },
+            },
+            destinations: {
+              byId: {},
+              ids: [],
+            },
+            journeys: { byDestinationId: {} },
+          },
+        },
+        ids: ['transit'],
+      },
+    };
+
+    expect(reducer(oldState, action)).toEqual(newState);
+  });
+
   it('should handle action type UPDATE_CURRENT_LOCATION', () => {
     const oldState = {
       widgets: {
@@ -580,8 +634,10 @@ describe('root reducer', () => {
       alerts: {
         1: {
           affectedLines: ['18', '52'],
-          description: 'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
-          subject: 'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
+          description:
+            'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
+          subject:
+            'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
         },
       },
     };
@@ -594,8 +650,10 @@ describe('root reducer', () => {
               alerts: {
                 1: {
                   affectedLines: ['18', '52'],
-                  description: 'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
-                  subject: 'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
+                  description:
+                    'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
+                  subject:
+                    'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
                 },
               },
             },

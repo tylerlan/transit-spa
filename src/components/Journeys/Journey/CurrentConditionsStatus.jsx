@@ -14,27 +14,32 @@ const popupStyle = {
   padding: '2em',
 };
 
-const CurrentConditionsStatus = ({ conditionStatus }) => (
-  <Popup
-    trigger={
-      <Label style={labelStyle} color={conditionStatus === 'on-time' ? 'green' : 'red'}>
-        {conditionStatus === 'on-time' ? 'on-time' : 'delayed'}
-      </Label>
-    }
-    content={conditionStatus}
-    style={popupStyle}
-    offset={50}
-    position="right center"
-    inverted
-  />
-);
+const CurrentConditionsStatus = ({ conditionStatus }) => {
+  const color = conditionStatus === 'on-time' ? 'green' : 'red';
+  const status = conditionStatus === 'on-time' ? 'on-time' : 'delayed';
+
+  return (
+    <Popup
+      trigger={
+        <Label style={labelStyle} color={conditionStatus === null ? 'grey' : color}>
+          {conditionStatus === null ? 'unknown' : status}
+        </Label>
+      }
+      content={conditionStatus}
+      style={popupStyle}
+      offset={50}
+      position="right center"
+      inverted
+    />
+  );
+};
 
 CurrentConditionsStatus.propTypes = {
   conditionStatus: PropTypes.string.isRequired,
 };
 
 CurrentConditionsStatus.defaultProps = {
-  conditionStatus: '',
+  conditionStatus: 'unknown',
 };
 
 export default CurrentConditionsStatus;

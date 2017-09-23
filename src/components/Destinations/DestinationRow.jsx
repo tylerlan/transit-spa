@@ -8,16 +8,12 @@ import DestinationHeader from './Destination/DestinationHeader';
 import RemoveDestinationButton from './RemoveDestinationButton';
 import './destination.css';
 
-export const DestinationRow = ({ id, name }) => (
-  <div>
+const DestinationRow = ({ id, name }) => (
+  <Segment textAlign="center" compact>
     <RemoveDestinationButton id={id} />
-    <Segment compact>
-      <DestinationHeader name={name} />
-    </Segment>
-    <Segment textAlign="center" compact>
-      <JourneyTable id={id} />
-    </Segment>
-  </div>
+    <DestinationHeader name={name} />
+    <JourneyTable id={id} />
+  </Segment>
 );
 
 DestinationRow.propTypes = {
@@ -27,7 +23,7 @@ DestinationRow.propTypes = {
 
 DestinationRow.defaultProps = {
   id: 1,
-  name: '',
+  name: 'Civic Center',
 };
 
 export default DestinationRow;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import { JourneyTable, timeToLeaveConverter, mapDispatchToProps } from './JourneyTable';
+import { JourneyTable, mapStateToProps, mapDispatchToProps } from './JourneyTable';
 
 describe('JourneyTable', () => {
   const testData = {
@@ -38,8 +38,10 @@ describe('JourneyTable', () => {
     alerts: {
       1: {
         affectedLines: ['18', '52'],
-        description: 'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
-        subject: 'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
+        description:
+          'Due to construction, Lines 18 and 52 will not serve any stops on Monroe Street between Jackson Street and San Pablo Avenue..',
+        subject:
+          'Lines 18 and 52 - Stop Closures near UC Village on Monroe Street and San Pablo Avenue',
       },
     },
   };
@@ -52,9 +54,54 @@ describe('JourneyTable', () => {
         origin={testData.origin}
         destinationsById={testData.destinationsById}
         journeys={null}
+        fetchJourneys={() => {}}
       />,
     );
     expect(toJson(component)).toMatchSnapshot();
+  });
+
+  it('mapStateToProps', () => {
+    const state = {
+      widgets: {
+        ids: ['transit'],
+        byId: {
+          transit: {
+            configuration: {
+              geolocating: false,
+              currentLocation: {
+                address: '44 Tehama St, San Francisco, CA 94105',
+              },
+            },
+            destinations: {
+              ids: [5],
+              byId: {
+                5: {
+                  id: 5,
+                  address: 'SFO, San Francisco, CA 94128',
+                },
+              },
+            },
+            journeys: {
+              byDestinationId: {},
+            },
+          },
+        },
+      },
+    };
+
+    const expected = {
+      alerts: undefined,
+      destinationId: 5,
+      destinationsById: {
+        5: {
+          address: 'SFO, San Francisco, CA 94128',
+          id: 5,
+        },
+      },
+      journeys: undefined,
+      origin: '44 Tehama St, San Francisco, CA 94105',
+    };
+    expect(mapStateToProps(state, { id: 5, widgetId: 'transit' })).toEqual(expected);
   });
 
   it('mapDispatchToProps', () => {
@@ -77,12 +124,5 @@ describe('JourneyTable', () => {
     );
 
     expect(fetchJourneys).toHaveBeenCalled();
-  });
-});
-
-describe('timeToLeaveConverter', () => {
-  it('should return positive integer', () => {
-    const futureTimeInSeconds = Date.now() + 1000;
-    expect(timeToLeaveConverter(futureTimeInSeconds)).toBeGreaterThanOrEqual(1);
   });
 });

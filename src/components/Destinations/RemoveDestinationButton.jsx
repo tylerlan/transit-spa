@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { removeDestination } from '../../actions';
 
 export class RemoveDestinationButton extends Component {
+  // TODO: TEST buttonWasClicked
+
   buttonWasClicked = (e) => {
     e.preventDefault();
     this.props.removeDestination(this.props.id);
@@ -34,7 +36,7 @@ RemoveDestinationButton.defaultProps = {
   removeDestination: () => {},
 };
 
-const mapDispatchToProps = dispatch =>
+export const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       removeDestination,

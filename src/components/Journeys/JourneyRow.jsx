@@ -17,7 +17,7 @@ const headerStyle = {
 
 const journeyRowStyle = {
   alignItems: 'center',
-  display: 'flex',
+  display: 'inline-flex',
   padding: '0.5rem',
   clear: 'both',
   margin: 'auto',

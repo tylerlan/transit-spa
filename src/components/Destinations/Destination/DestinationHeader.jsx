@@ -11,8 +11,6 @@ const DestinationHeader = ({ name }) => (
   </Header>
 );
 
-export default DestinationHeader;
-
 DestinationHeader.propTypes = {
   name: PropTypes.string.isRequired,
 };
@@ -20,3 +18,5 @@ DestinationHeader.propTypes = {
 DestinationHeader.defaultProps = {
   name: '',
 };
+
+export default DestinationHeader;
