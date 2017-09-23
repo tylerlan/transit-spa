@@ -21,9 +21,11 @@ class TimeToLeave extends Component {
   }
 
   render() {
+    const { timeToLeaveInSeconds } = this.props;
+
     return (
       <Header as="h1" color="grey" style={headerStyle}>
-        <Timer seconds={this.props.timeToLeaveInSeconds} onComplete={this.timerExpired} />
+        <Timer seconds={timeToLeaveInSeconds} onComplete={this.timerExpired} />
       </Header>
     );
   }
