@@ -74,9 +74,11 @@ exports[`JourneyRow should render when passed required props 1`] = `
               seconds={120}
             >
               <div>
-                02
-                :
-                00
+                <div>
+                  02
+                  :
+                  00
+                </div>
               </div>
             </Timer>
           </h1>
