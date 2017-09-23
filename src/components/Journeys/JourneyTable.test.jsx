@@ -54,6 +54,7 @@ describe('JourneyTable', () => {
         origin={testData.origin}
         destinationsById={testData.destinationsById}
         journeys={null}
+        fetchJourneys={() => {}}
       />,
     );
     expect(toJson(component)).toMatchSnapshot();
