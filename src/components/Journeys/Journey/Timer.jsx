@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { Loader } from 'semantic-ui-react';
+
 class Timer extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +45,13 @@ class Timer extends Component {
 
     return (
       <div>
-        {minutes}:{seconds}
+        {currentCount <= 1 ? (
+          <Loader active inline="centered" />
+        ) : (
+          <div>
+            {minutes}:{seconds}
+          </div>
+        )}
       </div>
     );
   }
@@ -52,11 +60,6 @@ class Timer extends Component {
 Timer.propTypes = {
   seconds: PropTypes.number.isRequired,
   onComplete: PropTypes.func.isRequired,
-};
-
-Timer.defaultProps = {
-  seconds: 6,
-  onComplete: () => {},
 };
 
 export default Timer;
