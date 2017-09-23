@@ -12,8 +12,9 @@
 # misc
 .DS_Store
 .env.local
-.env.development.local
+.env.transit-api
 .env.test.local
+.env.development.local
 .env.production.local
 
 npm-debug.log*
