@@ -6,7 +6,7 @@
   tag: dev
 - service: transit-spa
   command: npm run create-module
-  tag: dev
+  tag: ^(master|dev)
 - service: npm-publisher
   command: publish
   tag: master
