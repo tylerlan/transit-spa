@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TransitNode renders step with more inputs 1`] = `
+<Popup
+  on="hover"
+  position="top left"
+  trigger={
+    <div>
+      <Image
+        as="img"
+        src="SFMTA-logo.png"
+        style={
+          Object {
+            "float": "left",
+            "maxHeight": "22px",
+          }
+        }
+        ui={true}
+      />
+      <Label
+        circular={true}
+        color={null}
+      >
+        14
+      </Label>
+    </div>
+  }
+>
+  <Header
+    as="h4"
+  >
+    SFMTA
+  </Header>
+  <p>
+    Bus 14 towards Daly City
+  </p>
+  <p>
+    6 mins
+  </p>
+</Popup>
+`;
+
+exports[`TransitNode renders step with some inputs 1`] = `
+<Popup
+  on="hover"
+  position="top left"
+  trigger={
+    <div>
+      <Image
+        as="img"
+        src="walk-web-med.png"
+        style={
+          Object {
+            "float": "left",
+            "maxHeight": "22px",
+          }
+        }
+        ui={true}
+      />
+    </div>
+  }
+>
+  <Header
+    as="h4"
+  >
+    Walk
+  </Header>
+  <p>
+    to Some St. Station
+  </p>
+  <p>
+    4 mins
+  </p>
+</Popup>
+`;

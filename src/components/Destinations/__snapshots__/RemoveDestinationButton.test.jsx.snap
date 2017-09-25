@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RemoveDestinationButton should render a remove button 1`] = `
+<Button
+  as="button"
+  circular={true}
+  color="red"
+  floated="right"
+  icon="delete"
+  onClick={[Function]}
+  size="small"
+/>
+`;

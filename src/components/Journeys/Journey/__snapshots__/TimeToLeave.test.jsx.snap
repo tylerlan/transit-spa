@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimeToLeave renders list item 1`] = `
+<Header
+  as="h1"
+  color="grey"
+  style={
+    Object {
+      "marginBottom": "0rem",
+      "marginTop": "0rem",
+    }
+  }
+>
+  <Timer
+    onComplete={[Function]}
+    seconds={120}
+  />
+</Header>
+`;

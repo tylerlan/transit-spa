@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrentLocation should render Current Location: YOUR_ADDRESS when geolocating prop is false 1`] = `
+<div
+  id="current-location-text"
+>
+  <div>
+    <p>
+      <Icon
+        as="i"
+        color="green"
+        name="location arrow"
+        size="small"
+      />
+      1234 Main St
+    </p>
+  </div>
+</div>
+`;
+
+exports[`CurrentLocation should render Determining your current location... 1`] = `
+<div
+  id="current-location-text"
+>
+  <div>
+    <Icon
+      as="i"
+      color="grey"
+      name="location arrow"
+      size="small"
+    />
+    <Loader
+      active={true}
+      indeterminate={true}
+      inline={true}
+    />
+  </div>
+</div>
+`;

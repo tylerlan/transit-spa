@@ -1,24 +1,50 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.transit-container {
+  text-align: center;
+  height: inherit !important;
+  width: inherit !important;
+  padding: 0 !important;
+}
+#current-location-container {
+  height: 30% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: inherit !important;
+}
+#current-location-text {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 !important;
+}
+.new-transit-container {
+  height: 70% !important;
+  width: inherit !important;
+  padding: 0 !important;
+}
+.destination-container {
+  height: 100% !important;
+  width: inherit !important;
+  padding: 0 !important;
+}
+#button-div {
+  height: inherit !important;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.transit-button {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 !important;
 }
 
-.App-intro {
-  font-size: large;
+.react-grid-item {
+  margin: 0.25%;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.journeyVizColumn {
+  overflow-x: scroll;
+  overflow-y: visible;
 }

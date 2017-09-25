@@ -1,0 +1,90 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import PlacesAutocomplete from 'react-places-autocomplete';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addDestination } from '../../actions';
+
+import TRANSIT_API from '../../utils/Api';
+import injectWidgetId from '../../utils/utils';
+
+export class PlacesAutocompleteForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { address: '600 Guerrero St, San Francisco, CA 94110' };
+    this.onChange = address => this.setState({ address });
+  }
+
+  reportError = (message) => {
+    /* eslint-disable no-alert */
+    alert(message);
+    this.setState({ address: '' });
+  };
+
+  // TODO: TEST handleFormSubmit, CALL TO fetchJourneys, AND SIMULATE ERROR
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    TRANSIT_API.fetchJourneys(this.props.origin, this.state.address)
+      .then((result) => {
+        if (result.length > 1) {
+          this.props.addDestination(this.state.address);
+          this.props.onClick();
+          return;
+        }
+        this.reportError('no transit options available');
+      })
+      .catch(e => e);
+  };
+
+  render() {
+    const inputProps = {
+      value: this.state.address,
+      onChange: this.onChange,
+      placeholder: 'Choose a new destination',
+    };
+
+    return (
+      <form className="ui semantic" onSubmit={this.handleFormSubmit}>
+        <div style={{ paddingBottom: '10px' }}>
+          <PlacesAutocomplete inputProps={inputProps} />
+        </div>
+
+        <button className="ui green button" id="submit-destination" type="submit">
+          Submit
+        </button>
+      </form>
+    );
+  }
+}
+
+PlacesAutocompleteForm.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  addDestination: PropTypes.func.isRequired,
+  origin: PropTypes.string.isRequired,
+};
+
+PlacesAutocompleteForm.defaultProps = {
+  onClick: () => {},
+  addDestination: () => {},
+  origin: '',
+};
+
+export const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.widgetId;
+  const origin = state.widgets.byId[id].configuration.currentLocation.address;
+
+  return {
+    origin,
+  };
+};
+
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      addDestination,
+    },
+    dispatch,
+  );
+
+export default injectWidgetId(connect(mapStateToProps, mapDispatchToProps)(PlacesAutocompleteForm));

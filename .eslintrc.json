@@ -1,7 +1,14 @@
 {
   "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "strict": 0
+  },
   "env": {
     "browser": true,
     "jest": true
+  },
+  "rules": {
+    "import/no-named-as-default": "off"
   }
 }

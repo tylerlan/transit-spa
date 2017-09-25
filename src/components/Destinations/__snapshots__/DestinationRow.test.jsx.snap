@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DestinationRow should render when given a name and id 1`] = `
+<Segment
+  compact={true}
+  textAlign="center"
+>
+  <Connect(RemoveDestinationButton)
+    id={1}
+  />
+  <DestinationHeader
+    name="Tartine"
+  />
+  <Wrapper
+    id={1}
+  />
+</Segment>
+`;

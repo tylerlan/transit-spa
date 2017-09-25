@@ -1,8 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import { Provider } from 'react-redux';
+import { transit as rootReducer } from './reducers/index';
 
-ReactDOM.render(React.createElement(App), document.getElementById('root'));
+import App from './App';
+import store from './store';
+import registerServiceWorker from './registerServiceWorker';
+import './index.css';
+import { WIDGET_ID } from './constants/constants';
+import TRANSIT_API from './utils/Api';
+/* eslint-disable react/jsx-filename-extension */
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App widgetId={WIDGET_ID} />
+  </Provider>,
+  document.getElementById('root'),
+);
+
 registerServiceWorker();
+
+export default App;
+export { rootReducer, TRANSIT_API };

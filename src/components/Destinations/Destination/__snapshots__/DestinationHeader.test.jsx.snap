@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DestinationHeader should render when passed required props 1`] = `
+<Header
+  as="h3"
+  className="destination-header"
+>
+  Tartine
+</Header>
+`;

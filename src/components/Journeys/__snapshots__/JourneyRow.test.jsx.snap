@@ -1,0 +1,362 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JourneyRow should render when passed required props 1`] = `
+<JourneyRow
+  conditionStatus="on-time"
+  eta="11:00am"
+  refreshJourneys={[Function]}
+  steps={
+    Array [
+      Object {
+        "duration": "1 mins",
+        "instruction": "Walk to Some St. Station",
+        "mode": "WALKING",
+      },
+    ]
+  }
+  timeToLeaveInSeconds={120}
+>
+  <div
+    className="journey-row"
+    style={
+      Object {
+        "alignItems": "center",
+        "clear": "both",
+        "display": "inline-flex",
+        "margin": "auto",
+        "padding": "0.5rem",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "minWidth": "80px",
+          "padding": "inherit",
+        }
+      }
+    >
+      <p
+        style={
+          Object {
+            "marginBottom": "0px",
+            "marginTop": "0px",
+          }
+        }
+      >
+        leave in
+      </p>
+      <TimeToLeave
+        refreshJourneys={[Function]}
+        timeToLeaveInSeconds={120}
+      >
+        <Header
+          as="h1"
+          color="grey"
+          style={
+            Object {
+              "marginBottom": "0rem",
+              "marginTop": "0rem",
+            }
+          }
+        >
+          <h1
+            className="ui grey header"
+            style={
+              Object {
+                "marginBottom": "0rem",
+                "marginTop": "0rem",
+              }
+            }
+          >
+            <Timer
+              onComplete={[Function]}
+              seconds={120}
+            >
+              <div>
+                <div>
+                  02
+                  :
+                  00
+                </div>
+              </div>
+            </Timer>
+          </h1>
+        </Header>
+      </TimeToLeave>
+    </div>
+    <div
+      style={
+        Object {
+          "minWidth": "80px",
+          "padding": "inherit",
+        }
+      }
+    >
+      <JourneyVisualization
+        steps={
+          Array [
+            Object {
+              "duration": "1 mins",
+              "instruction": "Walk to Some St. Station",
+              "mode": "WALKING",
+            },
+          ]
+        }
+      >
+        <StepGroup
+          className="journeyVizColumn"
+        >
+          <div
+            className="ui steps journeyVizColumn"
+          >
+            <Step>
+              <div
+                className="step"
+                onClick={[Function]}
+              >
+                <TransitNode
+                  step={
+                    Object {
+                      "duration": "1 mins",
+                      "instruction": "Walk to Some St. Station",
+                      "mode": "WALKING",
+                    }
+                  }
+                >
+                  <Popup
+                    on="hover"
+                    position="top left"
+                    trigger={
+                      <div>
+                        <Image
+                          as="img"
+                          src="walk-web-med.png"
+                          style={
+                            Object {
+                              "float": "left",
+                              "maxHeight": "22px",
+                            }
+                          }
+                          ui={true}
+                        />
+                        
+                      </div>
+                    }
+                  >
+                    <Portal
+                      closeOnDocumentClick={true}
+                      closeOnEscape={true}
+                      closeOnTriggerMouseLeave={true}
+                      mouseEnterDelay={50}
+                      mouseLeaveDelay={70}
+                      onClose={[Function]}
+                      onMount={[Function]}
+                      onOpen={[Function]}
+                      onUnmount={[Function]}
+                      openOnTriggerClick={true}
+                      openOnTriggerMouseEnter={true}
+                      trigger={
+                        <div>
+                          <Image
+                            as="img"
+                            src="walk-web-med.png"
+                            style={
+                              Object {
+                                "float": "left",
+                                "maxHeight": "22px",
+                              }
+                            }
+                            ui={true}
+                          />
+                          
+                        </div>
+                      }
+                    >
+                      <div
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseEnter={[Function]}
+                        onMouseLeave={[Function]}
+                      >
+                        <Image
+                          as="img"
+                          src="walk-web-med.png"
+                          style={
+                            Object {
+                              "float": "left",
+                              "maxHeight": "22px",
+                            }
+                          }
+                          ui={true}
+                        >
+                          <img
+                            className="ui image"
+                            src="walk-web-med.png"
+                            style={
+                              Object {
+                                "float": "left",
+                                "maxHeight": "22px",
+                              }
+                            }
+                          />
+                        </Image>
+                      </div>
+                    </Portal>
+                  </Popup>
+                </TransitNode>
+              </div>
+            </Step>
+          </div>
+        </StepGroup>
+      </JourneyVisualization>
+    </div>
+    <div
+      style={
+        Object {
+          "minWidth": "80px",
+          "padding": "inherit",
+        }
+      }
+    >
+      <Header
+        as="h4"
+        style={
+          Object {
+            "marginBottom": "0px",
+            "marginTop": "0px",
+          }
+        }
+      >
+        <h4
+          className="ui header"
+          style={
+            Object {
+              "marginBottom": "0px",
+              "marginTop": "0px",
+            }
+          }
+        >
+          arrive by
+        </h4>
+      </Header>
+      <ArriveByEstimate
+        eta="11:00am"
+      >
+        <Header
+          as="h4"
+          style={
+            Object {
+              "marginBottom": "0rem",
+              "marginTop": "0rem",
+            }
+          }
+        >
+          <h4
+            className="ui header"
+            style={
+              Object {
+                "marginBottom": "0rem",
+                "marginTop": "0rem",
+              }
+            }
+          >
+            11:00am
+          </h4>
+        </Header>
+      </ArriveByEstimate>
+      <CurrentConditionsStatus
+        conditionStatus="on-time"
+      >
+        <Popup
+          content="on-time"
+          inverted={true}
+          offset={50}
+          on="hover"
+          position="right center"
+          style={
+            Object {
+              "borderRadius": 0,
+              "opacity": 0.7,
+              "padding": "2em",
+            }
+          }
+          trigger={
+            <Label
+              color="green"
+              style={
+                Object {
+                  "marginBottom": "0rem",
+                  "marginTop": "0.5rem",
+                }
+              }
+            >
+              on-time
+            </Label>
+          }
+        >
+          <Portal
+            closeOnDocumentClick={true}
+            closeOnEscape={true}
+            closeOnTriggerMouseLeave={true}
+            mouseEnterDelay={50}
+            mouseLeaveDelay={70}
+            onClose={[Function]}
+            onMount={[Function]}
+            onOpen={[Function]}
+            onUnmount={[Function]}
+            openOnTriggerClick={true}
+            openOnTriggerMouseEnter={true}
+            trigger={
+              <Label
+                color="green"
+                style={
+                  Object {
+                    "marginBottom": "0rem",
+                    "marginTop": "0.5rem",
+                  }
+                }
+              >
+                on-time
+              </Label>
+            }
+          >
+            <Label
+              color="green"
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              style={
+                Object {
+                  "marginBottom": "0rem",
+                  "marginTop": "0.5rem",
+                }
+              }
+            >
+              <div
+                className="ui green label"
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                style={
+                  Object {
+                    "marginBottom": "0rem",
+                    "marginTop": "0.5rem",
+                  }
+                }
+              >
+                on-time
+              </div>
+            </Label>
+          </Portal>
+        </Popup>
+      </CurrentConditionsStatus>
+    </div>
+  </div>
+</JourneyRow>
+`;

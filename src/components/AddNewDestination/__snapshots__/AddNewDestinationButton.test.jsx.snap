@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddNewDestinationButton should render button 1`] = `
+<div
+  id="button-div"
+  style={
+    Object {
+      "marginLeft": "0.5rem",
+    }
+  }
+>
+  <Button
+    as="button"
+    circular={true}
+    className="transit-button"
+    color="blue"
+    icon="plus"
+    onClick={[Function]}
+    size="large"
+  />
+</div>
+`;

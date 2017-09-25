@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JourneyVisualization renders when given multiple steps 1`] = `
+<StepGroup
+  className="journeyVizColumn"
+>
+  <Step>
+    <TransitNode
+      step={
+        Object {
+          "duration": "4 mins",
+          "instruction": "Walk to Some St. Station",
+          "mode": "WALKING",
+        }
+      }
+    />
+  </Step>
+  <Step>
+    <TransitNode
+      step={
+        Object {
+          "agency": "SFMTA",
+          "duration": "6 mins",
+          "headsign": "Daly City",
+          "icon": undefined,
+          "instruction": "Bus towards Daly City",
+          "line": "14",
+          "localIcon": undefined,
+          "longName": "Mission",
+          "mode": "TRANSIT",
+          "shortName": "14",
+          "vehicle": "Bus",
+        }
+      }
+    />
+  </Step>
+</StepGroup>
+`;
+
+exports[`JourneyVisualization renders when given one step 1`] = `
+<StepGroup
+  className="journeyVizColumn"
+>
+  <Step>
+    <TransitNode
+      step={
+        Object {
+          "duration": "4 mins",
+          "instruction": "Walk to Some St. Station",
+          "mode": "WALKING",
+        }
+      }
+    />
+  </Step>
+</StepGroup>
+`;

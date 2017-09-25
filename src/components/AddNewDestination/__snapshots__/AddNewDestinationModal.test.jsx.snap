@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddNewDestinationModal should render modal 1`] = `
+<Modal
+  basic={true}
+  closeOnDimmerClick={true}
+  closeOnDocumentClick={false}
+  dimmer={true}
+  onClose={[Function]}
+  open={false}
+  size="small"
+  trigger={
+    <AddNewDestinationButton
+      onClick={[Function]}
+    >
+      Show Modal
+    </AddNewDestinationButton>
+  }
+>
+  <Header
+    content="Add new destination"
+    icon="compose"
+  />
+  <ModalActions>
+    <Wrapper
+      onClick={[Function]}
+    />
+  </ModalActions>
+</Modal>
+`;
