@@ -1,6 +1,5 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-// import nock from 'nock';
 import * as TYPES from '../constants/constants';
 import * as HELPERS from '../utils/apiHelpers';
 import * as actions from './index';
